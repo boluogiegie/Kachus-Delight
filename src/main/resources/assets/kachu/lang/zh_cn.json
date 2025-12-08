@@ -7,10 +7,13 @@
   "item.kachu.kanami_omelette_rice": "香奈美的蛋包饭",
   "item.kachu.kanami_omelette_rice1": "吃了一口的香奈美的蛋包饭",
   "item.kachu.kanami_omelette_rice2": "吃了两口的香奈美的蛋包饭",
+  "item.kachu.coffee_bean": "咖啡豆",
+  "item.kachu.wild_coffee_bush": "野生咖啡灌木",
 
   "block.kachu.kanami_omelette_rice_block": "香奈美的蛋包饭",
   "block.kachu.omelette_rice_block": "蛋包饭",
   "block.kachu.kanami_plate": "盘子",
+  "block.kachu.wild_coffee_bush": "野生咖啡灌木",
 
   "effect.farmersdelight.comfort": "舒适",
   "effect.farmersdelight.nourishment": "滋养",

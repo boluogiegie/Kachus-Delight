@@ -2,8 +2,10 @@ package com.kachudelight.kachu.registry;
 
 import com.kachudelight.kachu.KachuDelight;
 import com.kachudelight.kachu.block.KanamiPlateBlock;
+import com.kachudelight.kachu.block.crop.WildCoffeeBlock;
 import com.kachudelight.kachu.block.food.KanamiOmeletteRiceBlock;
 import com.kachudelight.kachu.block.food.OmeletteRiceBlock;
+import com.kachudelight.kachu.crop.CoffeeCrop;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
@@ -38,4 +40,14 @@ public class BlockRegistry {
                     .strength(0.3F)
                     .sound(SoundType.WOOD)
                     .noOcclusion()));
+
+    public static final RegistryObject<Block> WILD_COFFEE_BUSH = BLOCKS.register("wild_coffee_bush",
+            () -> new WildCoffeeBlock(
+                    BlockBehaviour.Properties.of()
+                            .mapColor(MapColor.PLANT)
+                            .noCollission()
+                            .instabreak()
+                            .sound(SoundType.GRASS),
+                    CoffeeCrop.COFFEE
+            ));
 }

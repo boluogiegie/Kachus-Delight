@@ -4,6 +4,7 @@ import com.kachudelight.kachu.KachuDelight;
 import com.kachudelight.kachu.item.FoodList;
 import com.kachudelight.kachu.item.food.KanamiOmeletteRiceItem;
 import com.kachudelight.kachu.item.food.OmeletteRiceItem;
+import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
@@ -13,6 +14,11 @@ import net.minecraftforge.registries.RegistryObject;
 
 public class ItemRegistry {
     public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, KachuDelight.MOD_ID);
+    public static final RegistryObject<Item> COFFEE_BEAN = ITEMS.register("coffee_bean",
+            () -> new Item(new Item.Properties().food(FoodList.COFFEE_BEAN)));
+    public static final RegistryObject<Item> WILD_COFFEE_BUSH = ITEMS.register("wild_coffee_bush",
+            () -> new BlockItem(BlockRegistry.WILD_COFFEE_BUSH.get(),
+                    new Item.Properties()));
 
     public static RegistryObject<Item> OMELETTE_RICE;
     public static RegistryObject<Item> OMELETTE_RICE1;
@@ -20,7 +26,6 @@ public class ItemRegistry {
     public static RegistryObject<Item> KANAMI_OMELETTE_RICE;
     public static RegistryObject<Item> KANAMI_OMELETTE_RICE1;
     public static RegistryObject<Item> KANAMI_OMELETTE_RICE2;
-
 
     static {
         // 吃了两口的蛋包饭
