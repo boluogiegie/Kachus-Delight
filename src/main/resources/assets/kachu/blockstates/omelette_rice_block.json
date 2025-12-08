@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "bites=0": { "model": "kachu:block/omelette_rice_full" },
+    "bites=1": { "model": "kachu:block/omelette_rice_half" },
+    "bites=2": { "model": "kachu:block/omelette_rice_almost_gone" }
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "itemGroup.kachu_delight": "Kachu's Delight",
+
+  "item.kachu.omelette_rice": "Omelette Rice",
+  "item.kachu.omelette_rice1": "Omelette Rice (One Bite)",
+  "item.kachu.omelette_rice2": "Omelette Rice (Two Bites)",
+  "item.kachu.kanami_omelette_rice": "Kanami's Omelette Rice",
+  "item.kachu.kanami_omelette_rice1": "Kanami's Omelette Rice (One Bite)",
+  "item.kachu.kanami_omelette_rice2": "Kanami's Omelette Rice (Two Bites)",
+
+  "block.kachu.kanami_omelette_rice_block": "Kanami's Omelette Rice",
+  "block.kachu.omelette_rice_block": "Omelette Rice",
+  "block.kachu.kanami_plate": "Plate",
+
+  "effect.farmersdelight.comfort": "Comfort",
+  "effect.farmersdelight.nourishment": "Nourishment",
+
+  "jei.kachu.omelette_rice_upgrade": "Kanami's Omelette Rice"
+}

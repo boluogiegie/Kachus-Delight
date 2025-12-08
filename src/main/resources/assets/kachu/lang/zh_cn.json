@@ -1,0 +1,19 @@
+{
+  "itemGroup.kachu_delight": "卡丘乐事",
+
+  "item.kachu.omelette_rice": "蛋包饭",
+  "item.kachu.omelette_rice1": "吃了一口的蛋包饭",
+  "item.kachu.omelette_rice2": "吃了两口的蛋包饭",
+  "item.kachu.kanami_omelette_rice": "香奈美的蛋包饭",
+  "item.kachu.kanami_omelette_rice1": "吃了一口的香奈美的蛋包饭",
+  "item.kachu.kanami_omelette_rice2": "吃了两口的香奈美的蛋包饭",
+
+  "block.kachu.kanami_omelette_rice_block": "香奈美的蛋包饭",
+  "block.kachu.omelette_rice_block": "蛋包饭",
+  "block.kachu.kanami_plate": "盘子",
+
+  "effect.farmersdelight.comfort": "舒适",
+  "effect.farmersdelight.nourishment": "滋养",
+
+  "jei.kachu.omelette_rice_upgrade": "香奈美的蛋包饭"
+}
