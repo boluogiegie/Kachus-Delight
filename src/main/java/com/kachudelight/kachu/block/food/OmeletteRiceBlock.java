@@ -1,20 +1,22 @@
 package com.kachudelight.kachu.block.food;
 
+import com.kachudelight.kachu.block.KanamiPlateBlock;
 import com.kachudelight.kachu.registry.BlockRegistry;
 import com.kachudelight.kachu.registry.ItemRegistry;
-import net.minecraft.world.level.BlockGetter;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
-import net.minecraft.world.InteractionResult;
-import net.minecraft.world.InteractionHand;
-import net.minecraft.core.BlockPos;
-import net.minecraft.world.phys.BlockHitResult;
+import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
-import net.minecraft.sounds.SoundSource;
-import net.minecraft.sounds.SoundEvents;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.NotNull;
 
@@ -29,7 +31,6 @@ public class OmeletteRiceBlock extends AbstractFoodBlock {
 
     public OmeletteRiceBlock(Properties properties) {
         super(properties);
-        this.registerDefaultState(this.stateDefinition.any().setValue(BITES, 0));
     }
 
 
@@ -56,7 +57,10 @@ public class OmeletteRiceBlock extends AbstractFoodBlock {
             if (bites < 2) {
                 level.setBlock(pos, state.setValue(BITES, bites + 1), 3);
             } else {
-                level.setBlock(pos, getContainerBlock().defaultBlockState(), 3);
+                Direction facing = state.getValue(FACING);
+                BlockState plateState = getContainerBlock().defaultBlockState()
+                        .setValue(KanamiPlateBlock.FACING, facing);
+                level.setBlock(pos, plateState, 3);
             }
         }
 

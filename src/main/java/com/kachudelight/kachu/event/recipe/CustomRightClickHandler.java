@@ -3,6 +3,7 @@ package com.kachudelight.kachu.event.recipe;
 import com.kachudelight.kachu.block.food.AbstractFoodBlock;
 import com.kachudelight.kachu.registry.BlockRegistry;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
@@ -35,9 +36,12 @@ public class CustomRightClickHandler {
                 if (state.hasProperty(AbstractFoodBlock.BITES)) {
                     currentBites = state.getValue(AbstractFoodBlock.BITES);
                 }
+                Direction facing = state.hasProperty(AbstractFoodBlock.FACING) ?
+                        state.getValue(AbstractFoodBlock.FACING) : Direction.NORTH;
                 BlockState kanamiState = BlockRegistry.KANAMI_OMELETTE_RICE_BLOCK.get()
                         .defaultBlockState()
-                        .setValue(AbstractFoodBlock.BITES, currentBites);
+                        .setValue(AbstractFoodBlock.BITES, currentBites)
+                        .setValue(AbstractFoodBlock.FACING, facing);
                 world.setBlock(pos, kanamiState, 3);
                 if (!event.getEntity().getAbilities().instabuild) {
                     heldItem.shrink(1);

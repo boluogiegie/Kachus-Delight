@@ -1,7 +1,16 @@
 {
   "variants": {
-    "bites=0": { "model": "kachu:block/omelette_rice_full" },
-    "bites=1": { "model": "kachu:block/omelette_rice_half" },
-    "bites=2": { "model": "kachu:block/omelette_rice_almost_gone" }
+    "bites=0,facing=north": { "model": "kachu:block/omelette_rice_full", "y": 90 },
+    "bites=0,facing=east": { "model": "kachu:block/omelette_rice_full", "y": 180 },
+    "bites=0,facing=south": { "model": "kachu:block/omelette_rice_full", "y": 270 },
+    "bites=0,facing=west": { "model": "kachu:block/omelette_rice_full" },
+    "bites=1,facing=north": { "model": "kachu:block/omelette_rice_half", "y": 90 },
+    "bites=1,facing=east": { "model": "kachu:block/omelette_rice_half", "y": 180 },
+    "bites=1,facing=south": { "model": "kachu:block/omelette_rice_half", "y": 270 },
+    "bites=1,facing=west": { "model": "kachu:block/omelette_rice_half" },
+    "bites=2,facing=north": { "model": "kachu:block/omelette_rice_almost_gone", "y": 90 },
+    "bites=2,facing=east": { "model": "kachu:block/omelette_rice_almost_gone", "y": 180 },
+    "bites=2,facing=south": { "model": "kachu:block/omelette_rice_almost_gone", "y": 270 },
+    "bites=2,facing=west": { "model": "kachu:block/omelette_rice_almost_gone" }
   }
 }

@@ -99,8 +99,9 @@ public class OmeletteRiceItem extends PlaceableConsumableItem {
                 return InteractionResult.FAIL;
             }
 
-            BlockState stateToPlace = this.blockToPlace.defaultBlockState()
-                    .setValue(AbstractFoodBlock.BITES, this.biteStage);
+            BlockState stateForPlacement = this.blockToPlace.getStateForPlacement(blockPlaceContext);
+            BlockState stateToPlace = (stateForPlacement != null) ? stateForPlacement : this.blockToPlace.defaultBlockState();
+            stateToPlace = stateToPlace.setValue(AbstractFoodBlock.BITES, this.biteStage);
 
             if (level.setBlock(placePos, stateToPlace, 3)) {
                 if (!level.isClientSide) {
