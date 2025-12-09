@@ -56,14 +56,8 @@ public class PlaceableConsumableItem extends ConsumableItem {
 
             if (level.setBlock(placePos, blockToPlace.defaultBlockState(), 3)) {
                 if (!level.isClientSide) {
-                    level.playSound(null,
-                            placePos,
-                            SoundEvents.WOOL_PLACE,
-                            SoundSource.BLOCKS,
-                            1.0F,
-                            1.0F);
+                    level.playSound(null, placePos, SoundEvents.WOOL_PLACE, SoundSource.BLOCKS, 1.0F, 1.0F);
                 }
-
                 if (!player.getAbilities().instabuild) {
                     stack.shrink(1);
                 }

@@ -4,9 +4,6 @@ import com.kachudelight.kachu.KachuDelight;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
-import net.minecraftforge.registries.RegistryObject;
-import vectorwing.farmersdelight.common.effect.ComfortEffect;
-import vectorwing.farmersdelight.common.effect.NourishmentEffect;
 
 public class EffectRegistry {
     public static final DeferredRegister<MobEffect> EFFECTS = DeferredRegister.create(ForgeRegistries.MOB_EFFECTS, KachuDelight.MOD_ID);

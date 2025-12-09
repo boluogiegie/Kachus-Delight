@@ -28,12 +28,12 @@ import java.util.List;
 import java.util.function.Supplier;
 
 public class KanamiOmeletteRiceItem extends PlaceableConsumableItem {
+
     private static final ChatFormatting PINK_STYLE = ChatFormatting.LIGHT_PURPLE;
     private final Supplier<ItemStack> nextStageSupplier;
     private final int biteStage;
     private final boolean isLastBite;
 
-    // 完整蛋包饭的构造函数（三阶段简化版）
     public KanamiOmeletteRiceItem(Properties properties) {
         super(BlockRegistry.KANAMI_OMELETTE_RICE_BLOCK.get(), properties);
         this.nextStageSupplier = () -> new ItemStack(ItemRegistry.KANAMI_OMELETTE_RICE1.get());
@@ -41,10 +41,7 @@ public class KanamiOmeletteRiceItem extends PlaceableConsumableItem {
         this.isLastBite = false;
     }
 
-    // 完整构造函数（用于创建不同阶段的蛋包饭）
-    public KanamiOmeletteRiceItem(Properties properties, Block blockToPlace,
-                                   Supplier<ItemStack> nextStageSupplier,
-                                   int biteStage, boolean isLastBite) {
+    public KanamiOmeletteRiceItem(Properties properties, Block blockToPlace, Supplier<ItemStack> nextStageSupplier, int biteStage, boolean isLastBite) {
         super(blockToPlace, properties);
         this.nextStageSupplier = nextStageSupplier;
         this.biteStage = biteStage;
@@ -54,11 +51,9 @@ public class KanamiOmeletteRiceItem extends PlaceableConsumableItem {
     @Override
     public ItemStack finishUsingItem(ItemStack stack, Level level, LivingEntity consumer) {
         ItemStack result = super.finishUsingItem(stack, level, consumer);
-
         if (!level.isClientSide && consumer instanceof Player player && !player.getAbilities().instabuild) {
             if (nextStageSupplier != null) {
                 ItemStack nextStage = nextStageSupplier.get().copy();
-
                 if (!nextStage.isEmpty()) {
                     if (result.isEmpty()) {
                         return nextStage;
@@ -81,7 +76,6 @@ public class KanamiOmeletteRiceItem extends PlaceableConsumableItem {
             BlockPos clickedPos = context.getClickedPos();
             Direction clickedFace = context.getClickedFace();
             ItemStack stack = context.getItemInHand();
-
 
             BlockPlaceContext blockPlaceContext = new BlockPlaceContext(context);
             BlockPos placePos = blockPlaceContext.getClickedPos();
@@ -112,16 +106,10 @@ public class KanamiOmeletteRiceItem extends PlaceableConsumableItem {
 
     @OnlyIn(Dist.CLIENT)
     @Override
-    public void appendHoverText(ItemStack stack, @Nullable Level level,
-                                List<Component> tooltip, TooltipFlag flagIn) {
-        // 先调用父类方法，这会添加农夫乐事的食物效果提示
+    public void appendHoverText(ItemStack stack, @Nullable Level level, List<Component> tooltip, TooltipFlag flagIn) {
         super.appendHoverText(stack, level, tooltip, flagIn);
-
-        // 然后添加你自己的自定义描述
         String description = getDescriptionForStage(biteStage);
-        Component customDescription = Component.literal(description)
-                .withStyle(ChatFormatting.LIGHT_PURPLE)
-                .withStyle(ChatFormatting.ITALIC);
+        Component customDescription = Component.literal(description).withStyle(ChatFormatting.LIGHT_PURPLE).withStyle(ChatFormatting.ITALIC);
         tooltip.add(customDescription);
     }
 
@@ -160,8 +148,6 @@ public class KanamiOmeletteRiceItem extends PlaceableConsumableItem {
     @Override
     public Component getName(ItemStack stack) {
         Component baseName = Component.translatable(this.getDescriptionId());
-        return baseName.copy()
-                .withStyle(PINK_STYLE)
-                .withStyle(ChatFormatting.ITALIC);
+        return baseName.copy().withStyle(PINK_STYLE).withStyle(ChatFormatting.ITALIC);
     }
 }

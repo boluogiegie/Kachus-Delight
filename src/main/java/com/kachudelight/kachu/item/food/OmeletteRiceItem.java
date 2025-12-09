@@ -27,10 +27,10 @@ import java.util.List;
 import java.util.function.Supplier;
 
 public class OmeletteRiceItem extends PlaceableConsumableItem {
+
     private final Supplier<ItemStack> nextStageSupplier;
     private final int biteStage;
     private final boolean isLastBite;
-
 
     public OmeletteRiceItem(Properties properties) {
         super(BlockRegistry.OMELETTE_RICE_BLOCK.get(), properties);
@@ -39,10 +39,7 @@ public class OmeletteRiceItem extends PlaceableConsumableItem {
         this.isLastBite = false;
     }
 
-
-    public OmeletteRiceItem(Properties properties, Block blockToPlace,
-                             Supplier<ItemStack> nextStageSupplier,
-                             int biteStage, boolean isLastBite) {
+    public OmeletteRiceItem(Properties properties, Block blockToPlace, Supplier<ItemStack> nextStageSupplier, int biteStage, boolean isLastBite) {
         super(blockToPlace, properties);
         this.nextStageSupplier = nextStageSupplier;
         this.biteStage = biteStage;
@@ -51,22 +48,14 @@ public class OmeletteRiceItem extends PlaceableConsumableItem {
 
     @Override
     public ItemStack finishUsingItem(ItemStack stack, Level level, LivingEntity consumer) {
-        // 先执行父类的吃东西逻辑（应用食物效果、处理碗等）
         ItemStack result = super.finishUsingItem(stack, level, consumer);
-
-        // 只在服务端处理
         if (!level.isClientSide && consumer instanceof Player player && !player.getAbilities().instabuild) {
             if (nextStageSupplier != null) {
                 ItemStack nextStage = nextStageSupplier.get().copy();
-
-                // 只有下一阶段不是空的才处理（最后一口会返回 EMPTY，不走这里，碗由 craftRemainder 处理）
                 if (!nextStage.isEmpty()) {
-                    // 原来只有1个（super后result为空）→ 直接把下一阶段物品替换到手上
                     if (result.isEmpty()) {
                         return nextStage;
-                    }
-                    // 原来有多个 → 手持物品已经-1了，再把下一阶段塞进背包
-                    else {
+                    } else {
                         if (!player.getInventory().add(nextStage)) {
                             player.drop(nextStage, false);
                         }
@@ -74,7 +63,6 @@ public class OmeletteRiceItem extends PlaceableConsumableItem {
                 }
             }
         }
-
         return result;
     }
 
@@ -86,7 +74,6 @@ public class OmeletteRiceItem extends PlaceableConsumableItem {
             BlockPos clickedPos = context.getClickedPos();
             Direction clickedFace = context.getClickedFace();
             ItemStack stack = context.getItemInHand();
-
 
             BlockPlaceContext blockPlaceContext = new BlockPlaceContext(context);
             BlockPos placePos = blockPlaceContext.getClickedPos();
@@ -118,11 +105,9 @@ public class OmeletteRiceItem extends PlaceableConsumableItem {
 
     @OnlyIn(Dist.CLIENT)
     @Override
-    public void appendHoverText(ItemStack stack, @Nullable Level level,
-                                List<Component> tooltip, TooltipFlag flagIn) {
+    public void appendHoverText(ItemStack stack, @Nullable Level level, List<Component> tooltip, TooltipFlag flagIn) {
         super.appendHoverText(stack, level, tooltip, flagIn);
     }
-
 
     public int getBiteStage() {
         return biteStage;

@@ -30,14 +30,12 @@ public class WildCoffeeBlock extends BushBlock {
 
     @Override
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
-        // 如果你需要更复杂的随机性，可以在这里添加自定义属性
     }
 
     @Override
     public BlockState getStateForPlacement(BlockPlaceContext context) {
-        // 使用随机数决定使用哪个变体
         RandomSource random = context.getLevel().getRandom();
-        return this.defaultBlockState(); // 随机性由方块状态variant系统自动处理
+        return this.defaultBlockState();
     }
 
     @Override

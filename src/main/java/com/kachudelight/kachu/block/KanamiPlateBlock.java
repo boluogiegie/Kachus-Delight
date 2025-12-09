@@ -21,19 +21,13 @@ import java.util.List;
 public class KanamiPlateBlock extends HorizontalDirectionalBlock {
     private static final VoxelShape SHAPE = Block.box(0.0D, 0.0D, 0.0D, 16.0D, 2.0D, 16.0D);
 
-    public KanamiPlateBlock(Properties properties) {
-        super(Properties.of()
-                .mapColor(MapColor.WOOD)
-                .strength(0.0F)
-                .sound(SoundType.WOOD)
-                .noOcclusion());
-        this.registerDefaultState(this.stateDefinition.any()
-                .setValue(FACING, Direction.WEST));
-    }
+    public KanamiPlateBlock(Properties properties) {super(Properties.of().mapColor(MapColor.WOOD).strength(0.0F).sound(SoundType.WOOD).noOcclusion());this.registerDefaultState(this.stateDefinition.any().setValue(FACING, Direction.WEST));}
+
     @Override
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
         builder.add(FACING); // 添加朝向属性
     }
+
     @Override
     public VoxelShape getShape(BlockState state, BlockGetter world, BlockPos pos, CollisionContext context) {
         return SHAPE;

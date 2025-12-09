@@ -26,19 +26,10 @@ public class JEIKachuPlugin implements IModPlugin {
     public void registerCategories(IRecipeCategoryRegistration registration) {
         OmeletteRiceUpgradeCategory category = new OmeletteRiceUpgradeCategory(registration.getJeiHelpers().getGuiHelper());
         registration.addRecipeCategories(category);
-
     }
 
     @Override
     public void registerRecipes(IRecipeRegistration registration) {
-        List<OmeletteRiceUpgradeRecipe> recipes = new ArrayList<>();
-        recipes.add(new OmeletteRiceUpgradeRecipe(
-                ItemRegistry.OMELETTE_RICE.get(),           // 蛋包饭物品
-                new ItemStack(ModItems.TOMATO_SAUCE.get()), // 番茄酱
-                ItemRegistry.KANAMI_OMELETTE_RICE.get(),    // 香奈美的蛋包饭物品
-                new ItemStack(Items.BOWL)                   // 碗
-        ));
-        registration.addRecipes(OmeletteRiceUpgradeCategory.RECIPE_TYPE, recipes);
-
+        List<OmeletteRiceUpgradeRecipe> recipes = new ArrayList<>();recipes.add(new OmeletteRiceUpgradeRecipe(ItemRegistry.OMELETTE_RICE.get(), new ItemStack(ModItems.TOMATO_SAUCE.get()), ItemRegistry.KANAMI_OMELETTE_RICE.get(), new ItemStack(Items.BOWL)));registration.addRecipes(OmeletteRiceUpgradeCategory.RECIPE_TYPE, recipes);
     }
 }

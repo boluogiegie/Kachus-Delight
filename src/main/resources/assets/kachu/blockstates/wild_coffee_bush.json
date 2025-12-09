@@ -1,7 +1,10 @@
 {
   "variants": {
-    "": {
-      "model": "kachu:block/wild_coffee_bush"
-    }
+    "": [
+      { "model": "kachu:block/wild_coffee_bush_0" },
+      { "model": "kachu:block/wild_coffee_bush_1" },
+      { "model": "kachu:block/wild_coffee_bush_2" },
+      { "model": "kachu:block/wild_coffee_bush_3" }
+    ]
   }
 }

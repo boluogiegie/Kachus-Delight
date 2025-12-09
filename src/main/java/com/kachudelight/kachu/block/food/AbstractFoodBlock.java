@@ -25,37 +25,28 @@ public abstract class AbstractFoodBlock extends Block {
     public static final DirectionProperty FACING = HorizontalDirectionalBlock.FACING;
 
     protected static final VoxelShape[] SHAPE_BY_BITE = new VoxelShape[]{
-            Block.box(0.0D, 0.0D, 0.0D, 16.0D, 2.0D, 16.0D),  // 完整状态
-            Block.box(0.0D, 0.0D, 0.0D, 16.0D, 2.0D, 16.0D),  // 吃了一口
-            Block.box(0.0D, 0.0D, 0.0D, 16.0D, 2.0D, 16.0D),  // 吃了两口
+            Block.box(0.0D, 0.0D, 0.0D, 16.0D, 2.0D, 16.0D),
+            Block.box(0.0D, 0.0D, 0.0D, 16.0D, 2.0D, 16.0D),
+            Block.box(0.0D, 0.0D, 0.0D, 16.0D, 2.0D, 16.0D),
     };
 
     public AbstractFoodBlock(Properties properties) {
         super(properties);
-        // 在默认状态中同时注册 BITES 和 FACING 属性
-        this.registerDefaultState(this.stateDefinition.any()
-                .setValue(BITES, 0)
-                .setValue(FACING, Direction.WEST)); // 设置默认朝向
+        this.registerDefaultState(this.stateDefinition.any().setValue(BITES, 0).setValue(FACING, Direction.WEST));
     }
 
     @Override
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
-        // 将 FACING 属性加入方块状态定义
         builder.add(BITES, FACING);
     }
 
     @Override
-    public BlockState getStateForPlacement(BlockPlaceContext context) { // 5. 正确的方法名和参数
-        // 6. 根据玩家水平朝向（取反方向）设置方块朝向
+    public BlockState getStateForPlacement(BlockPlaceContext context) {
         return this.defaultBlockState().setValue(FACING, context.getHorizontalDirection().getOpposite());
     }
     @Override
     public abstract InteractionResult use(BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit);
-
-    // 抽象方法：获取对应食物的物品
     public abstract ItemStack getFoodItemForBite(int bites);
-
-    // 抽象方法：吃完后返回的物品（如碗、盘子等）
     public abstract ItemStack getContainerItem();
 
     @Override
@@ -70,7 +61,7 @@ public abstract class AbstractFoodBlock extends Block {
 
     @Override
     public int getAnalogOutputSignal(BlockState state, Level level, BlockPos pos) {
-        return 3 - state.getValue(BITES); // 比较器输出剩余口数
+        return 3 - state.getValue(BITES);
     }
 
     @Override

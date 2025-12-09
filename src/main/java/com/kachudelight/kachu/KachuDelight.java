@@ -18,20 +18,8 @@ import net.minecraftforge.registries.RegistryObject;
 @Mod(KachuDelight.MOD_ID)
 public class KachuDelight {
     public static final String MOD_ID = "kachu";
-    public static final DeferredRegister<CreativeModeTab> CREATIVE_MODE_TABS =
-            DeferredRegister.create(Registries.CREATIVE_MODE_TAB, MOD_ID);
-
-    public static final RegistryObject<CreativeModeTab> KACHU_DELIGHT_GROUP =
-            CREATIVE_MODE_TABS.register("kachu_delight", () ->
-                    CreativeModeTab.builder()
-                            .title(Component.translatable("itemGroup.kachu_delight"))
-                            .icon(() -> new ItemStack(ItemRegistry.OMELETTE_RICE.get()))
-                            .displayItems((parameters, output) -> {
-                                // 这会自动显示所有注册的物品
-                                ItemRegistry.ITEMS.getEntries().forEach(item -> output.accept(item.get()));
-                            })
-                            .build()
-            );
+    public static final DeferredRegister<CreativeModeTab> CREATIVE_MODE_TABS = DeferredRegister.create(Registries.CREATIVE_MODE_TAB, MOD_ID);
+    public static final RegistryObject<CreativeModeTab> KACHU_DELIGHT_GROUP = CREATIVE_MODE_TABS.register("kachu_delight", () -> CreativeModeTab.builder().title(Component.translatable("itemGroup.kachu_delight")).icon(() -> new ItemStack(ItemRegistry.OMELETTE_RICE.get())).displayItems((parameters, output) -> {ItemRegistry.ITEMS.getEntries().forEach(item -> output.accept(item.get()));}).build());
 
     public KachuDelight() {
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
@@ -43,7 +31,6 @@ public class KachuDelight {
 
     }
 
-    // 添加工具方法：创建资源位置
     public static ResourceLocation loc(String path) {
         return new ResourceLocation(MOD_ID, path);
     }
