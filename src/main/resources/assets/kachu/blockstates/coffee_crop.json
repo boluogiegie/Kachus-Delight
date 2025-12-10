@@ -1,0 +1,9 @@
+{
+  "variants": {
+    "age=0": { "model": "kachu:block/coffee_crop_stage1" },
+    "age=1": { "model": "kachu:block/coffee_crop_stage2" },
+    "age=2": { "model": "kachu:block/coffee_crop_stage3" },
+    "age=3": { "model": "kachu:block/coffee_crop_stage4" },
+    "age=4": { "model": "kachu:block/coffee_crop_stage5" }
+  }
+}

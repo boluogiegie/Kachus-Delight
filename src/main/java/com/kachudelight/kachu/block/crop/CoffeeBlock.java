@@ -75,7 +75,7 @@ public class CoffeeBlock extends CropBlock {
 
         if (currentAge < maxAge) {
             if (random.nextFloat() < 0.8f) {
-                int newAge = currentAge + 2;
+                int newAge = currentAge + 1;
                 if (newAge > maxAge) {
                     newAge = maxAge;
                 }
