@@ -6,12 +6,14 @@ import com.kachudelight.kachu.block.crop.CoffeeBlock;
 import com.kachudelight.kachu.block.crop.WildCoffeeBlock;
 import com.kachudelight.kachu.block.food.KanamiOmeletteRiceBlock;
 import com.kachudelight.kachu.block.food.OmeletteRiceBlock;
+import com.kachudelight.kachu.block.machine.CoffeeMachineBlock;
 import com.kachudelight.kachu.crop.CoffeeCrop;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.material.MapColor;
+import net.minecraft.world.level.material.PushReaction;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
@@ -29,5 +31,15 @@ public class BlockRegistry {
     public static final RegistryObject<Block> WILD_COFFEE_BUSH = BLOCKS.register("wild_coffee_bush", () -> new WildCoffeeBlock(BlockBehaviour.Properties.of().mapColor(MapColor.PLANT).noCollission().instabreak().sound(SoundType.GRASS), CoffeeCrop.COFFEE));
     // 咖啡作物
     public static final RegistryObject<Block> COFFEE_CROP = BLOCKS.register("coffee_crop", () -> new CoffeeBlock(BlockBehaviour.Properties.copy(Blocks.WHEAT)));
+    // 咖啡机
+    public static final RegistryObject<Block> COFFEE_MACHINE = BLOCKS.register("coffee_machine",
+            () -> new CoffeeMachineBlock(BlockBehaviour.Properties.of()
+                    .mapColor(MapColor.METAL)
+                    .strength(3.0F, 6.0F)
+                    .sound(SoundType.METAL)
+                    .requiresCorrectToolForDrops()
+                    .noOcclusion()
+                    .isViewBlocking((state, world, pos) -> false)
+                    .isSuffocating((state, world, pos) -> false)));
 
 }

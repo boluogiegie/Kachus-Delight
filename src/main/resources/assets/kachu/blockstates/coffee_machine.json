@@ -1,0 +1,20 @@
+{
+  "variants": {
+    "facing=north": {
+      "model": "kachu:block/coffee_machine",
+      "y": 0
+    },
+    "facing=east": {
+      "model": "kachu:block/coffee_machine",
+      "y": 90
+    },
+    "facing=south": {
+      "model": "kachu:block/coffee_machine",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "kachu:block/coffee_machine",
+      "y": 270
+    }
+  }
+}

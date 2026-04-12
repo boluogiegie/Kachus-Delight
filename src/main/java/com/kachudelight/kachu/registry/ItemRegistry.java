@@ -15,6 +15,10 @@ public class ItemRegistry {
     public static final RegistryObject<Item> COFFEE_BEAN = ITEMS.register("coffee_bean", () -> new ItemNameBlockItem(BlockRegistry.COFFEE_CROP.get(), new Item.Properties().food(FoodList.COFFEE_BEAN)));
     // 野生咖啡灌木
     public static final RegistryObject<Item> WILD_COFFEE_BUSH = ITEMS.register("wild_coffee_bush", () -> new BlockItem(BlockRegistry.WILD_COFFEE_BUSH.get(), new Item.Properties()));
+    // 咖啡机
+    public static final RegistryObject<Item> COFFEE_MACHINE = ITEMS.register("coffee_machine",
+            () -> new BlockItem(BlockRegistry.COFFEE_MACHINE.get(),
+                    new Item.Properties()));
 
     public static RegistryObject<Item> OMELETTE_RICE;
     public static RegistryObject<Item> OMELETTE_RICE1;

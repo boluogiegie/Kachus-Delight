@@ -18,6 +18,7 @@ public class ClientRenderSetup {
         event.enqueueWork(() -> {
             ItemBlockRenderTypes.setRenderLayer(BlockRegistry.WILD_COFFEE_BUSH.get(), RenderType.cutoutMipped());
             ItemBlockRenderTypes.setRenderLayer(BlockRegistry.COFFEE_CROP.get(), RenderType.cutoutMipped());
+            ItemBlockRenderTypes.setRenderLayer(BlockRegistry.COFFEE_MACHINE.get(), RenderType.cutoutMipped());
         // 添加其他镂空渲染的方块
         });
     }
