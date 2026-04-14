@@ -9,12 +9,14 @@
   "item.kachu.kanami_omelette_rice2": "Kanami's Omelette Rice (Two Bites)",
   "item.kachu.coffee_bean": "Coffee Bean",
   "item.kachu.wild_coffee_bush": "Wild Coffee Bush",
+  "item.kachu.coffee_machine": "Coffee Machine",
 
   "block.kachu.kanami_omelette_rice_block": "Kanami's Omelette Rice",
   "block.kachu.omelette_rice_block": "Omelette Rice",
   "block.kachu.kanami_plate": "Plate",
   "block.kachu.wild_coffee_bush": "Wild Coffee Bush",
   "block.kachu.coffee_crop": "Coffee Plant",
+  "block.kachu.coffee_machine": "Coffee Machine",
 
   "effect.farmersdelight.comfort": "Comfort",
   "effect.farmersdelight.nourishment": "Nourishment",

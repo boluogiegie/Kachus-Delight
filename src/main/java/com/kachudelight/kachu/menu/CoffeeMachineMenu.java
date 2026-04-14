@@ -18,7 +18,7 @@ public class CoffeeMachineMenu extends AbstractContainerMenu {
     private final ContainerData data;
 
     public CoffeeMachineMenu(int id, Inventory inv, FriendlyByteBuf extraData) {
-        this(id, inv, inv.player.level().getBlockEntity(extraData.readBlockPos()), new SimpleContainerData(2));
+        this(id, inv, inv.player.level().getBlockEntity(extraData.readBlockPos()), new SimpleContainerData(3));
     }
 
     public CoffeeMachineMenu(int id, Inventory inv, BlockEntity entity, ContainerData data) {
@@ -67,7 +67,7 @@ public class CoffeeMachineMenu extends AbstractContainerMenu {
     @Override
     public ItemStack quickMoveStack(Player player, int index) {
         Slot sourceSlot = slots.get(index);
-        if (!sourceSlot.hasItem()) return ItemStack.EMPTY;
+        if (sourceSlot == null || !sourceSlot.hasItem()) return ItemStack.EMPTY;
 
         ItemStack sourceStack = sourceSlot.getItem();
         ItemStack copyOfSourceStack = sourceStack.copy();
@@ -79,9 +79,15 @@ public class CoffeeMachineMenu extends AbstractContainerMenu {
             }
         }
         else if (index < VANILLA_FIRST_SLOT_INDEX + VANILLA_SLOT_COUNT) {
-            if (!moveItemStackTo(sourceStack, TE_INVENTORY_FIRST_SLOT_INDEX,
-                    TE_INVENTORY_FIRST_SLOT_INDEX + TE_INVENTORY_SLOT_COUNT, false)) {
-                return ItemStack.EMPTY;
+            if (sourceStack.is(net.minecraft.world.item.Items.WATER_BUCKET) || sourceStack.is(net.minecraft.world.item.Items.BUCKET)) {
+                if (!moveItemStackTo(sourceStack, 40, 41, false)) {
+                    return ItemStack.EMPTY;
+                }
+            }
+            else {
+                if (!moveItemStackTo(sourceStack, 36, 39, false)) {
+                    return ItemStack.EMPTY;
+                }
             }
         }
 
@@ -113,5 +119,9 @@ public class CoffeeMachineMenu extends AbstractContainerMenu {
         for (int i = 0; i < 9; ++i) {
             this.addSlot(new Slot(playerInventory, i, 8 + i * 18, 142));
         }
+    }
+
+    public int getWaterAmount() {
+        return this.data.get(2);
     }
 }

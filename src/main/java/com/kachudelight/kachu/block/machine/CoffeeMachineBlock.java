@@ -4,9 +4,13 @@ import com.kachudelight.kachu.block.entity.CoffeeMachineBlockEntity;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
@@ -89,19 +93,62 @@ public class CoffeeMachineBlock extends BaseEntityBlock {
         return RenderShape.MODEL;
     }
 
+//    @Override
+//    public InteractionResult use(BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
+//        if (!level.isClientSide()) {
+//            BlockEntity blockEntity = level.getBlockEntity(pos);
+//            if (blockEntity instanceof CoffeeMachineBlockEntity) {
+//                NetworkHooks.openScreen((ServerPlayer) player,
+//                        (CoffeeMachineBlockEntity) blockEntity,
+//                        buf -> buf.writeBlockPos(pos));
+//                return InteractionResult.CONSUME;
+//            }
+//        }
+//        return InteractionResult.SUCCESS;
+//    }
+
     @Override
-    public InteractionResult use(BlockState state, Level level, BlockPos pos,
-                                 Player player, InteractionHand hand, BlockHitResult hit) {
+    public InteractionResult use(BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
         if (!level.isClientSide()) {
-            BlockEntity blockEntity = level.getBlockEntity(pos);
-            if (blockEntity instanceof CoffeeMachineBlockEntity) {
-                NetworkHooks.openScreen((ServerPlayer) player,
-                        (CoffeeMachineBlockEntity) blockEntity,
-                        buf -> buf.writeBlockPos(pos));
-                return InteractionResult.CONSUME;
+            BlockEntity be = level.getBlockEntity(pos);
+            if (be instanceof CoffeeMachineBlockEntity machine) {
+                ItemStack heldItem = player.getItemInHand(hand);
+
+                // 逻辑：右键接水（拿着空桶）
+                if (heldItem.is(net.minecraft.world.item.Items.BUCKET) && machine.getWaterAmount() > 0) {
+                    machine.addWater(-1); // 减水
+                    level.playSound(null, pos, SoundEvents.BUCKET_FILL, SoundSource.BLOCKS, 1.0F, 1.0F);
+
+                    ItemStack waterBucket = new ItemStack(net.minecraft.world.item.Items.WATER_BUCKET);
+                    if (!player.isCreative()) {
+                        heldItem.shrink(1);
+                        if (heldItem.isEmpty()) player.setItemInHand(hand, waterBucket);
+                        else if (!player.getInventory().add(waterBucket)) player.drop(waterBucket, false);
+                    }
+                    return InteractionResult.SUCCESS;
+                }
+                // 逻辑：右键灌水（拿着水桶）
+                else if (heldItem.is(net.minecraft.world.item.Items.WATER_BUCKET) && !machine.isWaterFull()) {
+                    machine.addWater(1);
+                    level.playSound(null, pos, SoundEvents.BUCKET_EMPTY, SoundSource.BLOCKS, 1.0F, 1.0F);
+                    if (!player.isCreative()) {
+                        heldItem.shrink(1);
+                        if (heldItem.isEmpty()) {
+                            player.setItemInHand(hand, new ItemStack(Items.BUCKET));
+                        }
+                        else if (!player.getInventory().add(new ItemStack(Items.BUCKET))) {
+                            player.drop(new ItemStack(Items.BUCKET), false);
+                        }
+                    }
+                    return InteractionResult.SUCCESS;
+                } else if (heldItem.is(Items.WATER_BUCKET) && machine.isWaterFull()) {
+                    player.displayClientMessage(net.minecraft.network.chat.Component.literal("水已经满了喵！"), true);
+                    return InteractionResult.SUCCESS;
+                }
+                NetworkHooks.openScreen((ServerPlayer) player, machine, pos);
             }
         }
-        return InteractionResult.SUCCESS;
+        return InteractionResult.sidedSuccess(level.isClientSide());
     }
 
     @Nullable
