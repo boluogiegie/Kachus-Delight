@@ -32,14 +32,12 @@ public class CoffeeMachineMenu extends AbstractContainerMenu {
         addPlayerHotbar(inv);
 
         this.blockEntity.getCapability(ForgeCapabilities.ITEM_HANDLER).ifPresent(handler -> {
-            // 输入槽位（咖啡豆）
-            this.addSlot(new SlotItemHandler(handler, CoffeeMachineBlockEntity.INPUT_SLOT, 56, 17));
-            // 燃料槽位
-            this.addSlot(new SlotItemHandler(handler, CoffeeMachineBlockEntity.FUEL_SLOT, 56, 53));
-            // 输出槽位
-            this.addSlot(new SlotItemHandler(handler, CoffeeMachineBlockEntity.OUTPUT_SLOT, 116, 35));
-            // 容器槽位（杯子）
-            this.addSlot(new SlotItemHandler(handler, CoffeeMachineBlockEntity.CONTAINER_SLOT, 38, 35));
+            this.addSlot(new SlotItemHandler(handler, CoffeeMachineBlockEntity.INPUT_SLOT, 36, 21));
+            this.addSlot(new SlotItemHandler(handler, CoffeeMachineBlockEntity.FUEL_SLOT, 36, 39));
+            this.addSlot(new SlotItemHandler(handler, CoffeeMachineBlockEntity.CONTAINER_SLOT, 70, 48));
+            this.addSlot(new SlotItemHandler(handler, CoffeeMachineBlockEntity.OUTPUT_SLOT, 104, 30));
+            this.addSlot(new SlotItemHandler(handler, CoffeeMachineBlockEntity.WATER_IN_SLOT, 132, 12));
+            this.addSlot(new SlotItemHandler(handler, CoffeeMachineBlockEntity.WATER_OUT_SLOT, 132, 60));
         });
 
         addDataSlots(data);
@@ -52,12 +50,11 @@ public class CoffeeMachineMenu extends AbstractContainerMenu {
     public int getScaledProgress() {
         int progress = data.get(0);
         int maxProgress = data.get(1);
-        int progressArrowSize = 24; // 进度条像素长度
+        int progressArrowSize = 24;
 
         return maxProgress != 0 && progress != 0 ? progress * progressArrowSize / maxProgress : 0;
     }
 
-    // 快速转移物品的快捷键
     private static final int HOTBAR_SLOT_COUNT = 9;
     private static final int PLAYER_INVENTORY_ROW_COUNT = 3;
     private static final int PLAYER_INVENTORY_COLUMN_COUNT = 9;
@@ -75,16 +72,13 @@ public class CoffeeMachineMenu extends AbstractContainerMenu {
         ItemStack sourceStack = sourceSlot.getItem();
         ItemStack copyOfSourceStack = sourceStack.copy();
 
-        // 如果点击的是机器槽位
         if (index >= VANILLA_FIRST_SLOT_INDEX + VANILLA_SLOT_COUNT) {
             if (!moveItemStackTo(sourceStack, VANILLA_FIRST_SLOT_INDEX,
                     VANILLA_FIRST_SLOT_INDEX + VANILLA_SLOT_COUNT, false)) {
                 return ItemStack.EMPTY;
             }
         }
-        // 如果点击的是玩家背包槽位
         else if (index < VANILLA_FIRST_SLOT_INDEX + VANILLA_SLOT_COUNT) {
-            // 尝试放入输入槽
             if (!moveItemStackTo(sourceStack, TE_INVENTORY_FIRST_SLOT_INDEX,
                     TE_INVENTORY_FIRST_SLOT_INDEX + TE_INVENTORY_SLOT_COUNT, false)) {
                 return ItemStack.EMPTY;

@@ -33,11 +33,13 @@ import java.util.Optional;
 public class CoffeeMachineBlockEntity extends BlockEntity implements MenuProvider {
 
     // 定义槽位索引
-    public static final int INPUT_SLOT = 0;      // 咖啡豆输入
-    public static final int FUEL_SLOT = 1;       // 燃料（糖/奶等）
-    public static final int OUTPUT_SLOT = 2;     // 咖啡输出
-    public static final int CONTAINER_SLOT = 3;  // 容器（杯子）
-    public static final int TOTAL_SLOTS = 4;
+    public static final int INPUT_SLOT = 0;
+    public static final int FUEL_SLOT = 1;
+    public static final int OUTPUT_SLOT = 2;
+    public static final int CONTAINER_SLOT = 3;
+    public static final int WATER_IN_SLOT = 4;
+    public static final int WATER_OUT_SLOT = 5;
+    public static final int TOTAL_SLOTS = 6;
 
     private final ItemStackHandler itemHandler = new ItemStackHandler(TOTAL_SLOTS) {
         @Override
@@ -122,6 +124,9 @@ public class CoffeeMachineBlockEntity extends BlockEntity implements MenuProvide
     public void load(CompoundTag tag) {
         super.load(tag);
         itemHandler.deserializeNBT(tag.getCompound("inventory"));
+        if (itemHandler.getSlots() < TOTAL_SLOTS) {
+            itemHandler.setSize(TOTAL_SLOTS);
+        }
         progress = tag.getInt("coffee_machine.progress");
     }
 
