@@ -114,9 +114,8 @@ public class CoffeeMachineBlock extends BaseEntityBlock {
             if (be instanceof CoffeeMachineBlockEntity machine) {
                 ItemStack heldItem = player.getItemInHand(hand);
 
-                // 逻辑：右键接水（拿着空桶）
-                if (heldItem.is(net.minecraft.world.item.Items.BUCKET) && machine.getWaterAmount() > 0) {
-                    machine.addWater(-1); // 减水
+                if (heldItem.is(net.minecraft.world.item.Items.BUCKET) && machine.getWaterAmount() >= 1000) {
+                    machine.addWater(-1000);
                     level.playSound(null, pos, SoundEvents.BUCKET_FILL, SoundSource.BLOCKS, 1.0F, 1.0F);
 
                     ItemStack waterBucket = new ItemStack(net.minecraft.world.item.Items.WATER_BUCKET);
@@ -127,9 +126,8 @@ public class CoffeeMachineBlock extends BaseEntityBlock {
                     }
                     return InteractionResult.SUCCESS;
                 }
-                // 逻辑：右键灌水（拿着水桶）
-                else if (heldItem.is(net.minecraft.world.item.Items.WATER_BUCKET) && !machine.isWaterFull()) {
-                    machine.addWater(1);
+                else if (heldItem.is(net.minecraft.world.item.Items.WATER_BUCKET) && machine.getWaterAmount() <= CoffeeMachineBlockEntity.MAX_WATER - 1000) {
+                    machine.addWater(1000);
                     level.playSound(null, pos, SoundEvents.BUCKET_EMPTY, SoundSource.BLOCKS, 1.0F, 1.0F);
                     if (!player.isCreative()) {
                         heldItem.shrink(1);
@@ -141,14 +139,32 @@ public class CoffeeMachineBlock extends BaseEntityBlock {
                         }
                     }
                     return InteractionResult.SUCCESS;
-                } else if (heldItem.is(Items.WATER_BUCKET) && machine.isWaterFull()) {
-                    player.displayClientMessage(net.minecraft.network.chat.Component.literal("水已经满了喵！"), true);
+                } else if (heldItem.is(Items.WATER_BUCKET) && machine.getWaterAmount() > CoffeeMachineBlockEntity.MAX_WATER - 1000) {
+                    player.displayClientMessage(net.minecraft.network.chat.Component.literal("放不下了喵！"), true);
                     return InteractionResult.SUCCESS;
                 }
                 NetworkHooks.openScreen((ServerPlayer) player, machine, pos);
             }
         }
         return InteractionResult.sidedSuccess(level.isClientSide());
+    }
+
+    @Override
+    public void onRemove(BlockState state, Level level, BlockPos pos, BlockState newState, boolean isMoving) {
+        if (state.getBlock() != newState.getBlock()) {
+            BlockEntity blockEntity = level.getBlockEntity(pos);
+            if (blockEntity instanceof CoffeeMachineBlockEntity machine) {
+                machine.getCapability(net.minecraftforge.common.capabilities.ForgeCapabilities.ITEM_HANDLER).ifPresent(handler -> {
+                    for (int i = 0; i < handler.getSlots(); i++) {
+                        net.minecraft.world.item.ItemStack stack = handler.getStackInSlot(i);
+                        if (!stack.isEmpty()) {
+                            net.minecraft.world.Containers.dropItemStack(level, pos.getX(), pos.getY(), pos.getZ(), stack);
+                        }
+                    }
+                });
+            }
+            super.onRemove(state, level, pos, newState, isMoving);
+        }
     }
 
     @Nullable

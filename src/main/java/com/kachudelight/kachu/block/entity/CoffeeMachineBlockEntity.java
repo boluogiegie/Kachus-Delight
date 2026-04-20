@@ -33,8 +33,7 @@ import java.util.Optional;
 public class CoffeeMachineBlockEntity extends BlockEntity implements MenuProvider {
 
     private int waterAmount = 0;
-    public static final int MAX_WATER = 3;
-    // 定义槽位索引
+    public static final int MAX_WATER = 3000;
     public static final int INPUT_SLOT = 0;
     public static final int FUEL_SLOT = 1;
     public static final int OUTPUT_SLOT = 2;
@@ -48,13 +47,26 @@ public class CoffeeMachineBlockEntity extends BlockEntity implements MenuProvide
         protected void onContentsChanged(int slot) {
             setChanged();
         }
+
+        @Override
+        public boolean isItemValid(int slot, @NotNull ItemStack stack) {
+            return switch (slot) {
+                case INPUT_SLOT -> stack.is(com.kachudelight.kachu.registry.ItemRegistry.COFFEE_BEAN.get());
+                case FUEL_SLOT -> true; //辅料包还没做，暂时允许放入任何物品
+                case CONTAINER_SLOT -> true; //杯子还没做，暂时允许放入任何物品
+                case WATER_IN_SLOT -> stack.is(net.minecraft.world.item.Items.WATER_BUCKET) || stack.is(net.minecraft.world.item.Items.BUCKET);
+                case OUTPUT_SLOT, WATER_OUT_SLOT -> false;
+                default -> super.isItemValid(slot, stack);
+            };
+        }
+
     };
 
     private LazyOptional<IItemHandler> lazyItemHandler = LazyOptional.empty();
 
     protected final ContainerData data;
     private int progress = 0;
-    private int maxProgress = 200; // 10秒（20tick/秒）
+    private int maxProgress = 100;
 
     public CoffeeMachineBlockEntity(BlockPos pos, BlockState state) {
         super(BlockEntityRegistry.COFFEE_MACHINE.get(), pos, state);
@@ -85,7 +97,6 @@ public class CoffeeMachineBlockEntity extends BlockEntity implements MenuProvide
         };
     }
 
-    // 修复：getDisplayName 必须是 public
     @Override
     public Component getDisplayName() {
         return Component.translatable("block.kachu.coffee_machine");
@@ -157,21 +168,22 @@ public class CoffeeMachineBlockEntity extends BlockEntity implements MenuProvide
 
         ItemStack waterInStack = entity.itemHandler.getStackInSlot(WATER_IN_SLOT);
         ItemStack waterOutStack = entity.itemHandler.getStackInSlot(WATER_OUT_SLOT);
-        // --- 逻辑 A：放入水桶 -> 机器加水 -> 产出空桶 ---
-        if (waterInStack.is(net.minecraft.world.item.Items.WATER_BUCKET) && entity.waterAmount < MAX_WATER) {
+
+        // --- 逻辑 A：放入水桶 -> 机器加水 1000ml -> 产出空桶 ---
+        if (waterInStack.is(net.minecraft.world.item.Items.WATER_BUCKET) && entity.waterAmount <= MAX_WATER - 1000) {
             if (canOutputItem(waterOutStack, net.minecraft.world.item.Items.BUCKET)) {
                 entity.itemHandler.extractItem(WATER_IN_SLOT, 1, false);
                 fillOutputSlot(entity, net.minecraft.world.item.Items.BUCKET);
-                entity.waterAmount++;
+                entity.waterAmount += 1000;
                 entity.setChanged();
             }
         }
-        // --- 逻辑 B：放入空桶 -> 机器减水 -> 产出水桶 ---
-        else if (waterInStack.is(net.minecraft.world.item.Items.BUCKET) && entity.waterAmount > 0) {
+        // --- 逻辑 B：放入空桶 -> 机器减水 1000ml -> 产出水桶 ---
+        else if (waterInStack.is(net.minecraft.world.item.Items.BUCKET) && entity.waterAmount >= 1000) {
             if (canOutputItem(waterOutStack, net.minecraft.world.item.Items.WATER_BUCKET)) {
                 entity.itemHandler.extractItem(WATER_IN_SLOT, 1, false);
                 fillOutputSlot(entity, net.minecraft.world.item.Items.WATER_BUCKET);
-                entity.waterAmount--;
+                entity.waterAmount -= 1000;
                 entity.setChanged();
             }
         }
@@ -212,7 +224,7 @@ public class CoffeeMachineBlockEntity extends BlockEntity implements MenuProvide
     }
 
     public void addWater(int amount) {
-        this.waterAmount = Math.min(this.waterAmount + amount, MAX_WATER);
+        this.waterAmount = Math.min(Math.max(this.waterAmount + amount, 0), MAX_WATER);
         setChanged();
     }
 
@@ -232,7 +244,7 @@ public class CoffeeMachineBlockEntity extends BlockEntity implements MenuProvide
             entity.itemHandler.extractItem(FUEL_SLOT, 1, false);
             entity.itemHandler.extractItem(CONTAINER_SLOT, 1, false);
 
-            entity.waterAmount--;
+            entity.waterAmount -= 200; // 消耗 200ml
 
             // 添加输出
             ItemStack result = recipe.get().getResultItem(level.registryAccess()).copy();
@@ -245,7 +257,7 @@ public class CoffeeMachineBlockEntity extends BlockEntity implements MenuProvide
     }
 
     private static boolean hasRecipe(CoffeeMachineBlockEntity entity) {
-        if (entity.waterAmount <= 0) return false;
+        if (entity.waterAmount < 200) return false;
         Level level = entity.level;
         SimpleContainer inventory = new SimpleContainer(entity.itemHandler.getSlots());
         for (int i = 0; i < entity.itemHandler.getSlots(); i++) {

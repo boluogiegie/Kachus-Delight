@@ -21,8 +21,15 @@ public class CoffeeMachineScreen extends AbstractContainerScreen<CoffeeMachineMe
     @Override
     protected void init() {
         super.init();
-        this.inventoryLabelY = 1000;
-        this.titleLabelY = 1000;
+        this.inventoryLabelY = 72;
+        this.titleLabelY = 6;
+        this.titleLabelX = 8;
+    }
+
+    @Override
+    protected void renderLabels(GuiGraphics guiGraphics, int mouseX, int mouseY) {
+        guiGraphics.drawString(this.font, this.title, this.titleLabelX, this.titleLabelY, 0xFFFFFF, false);
+        guiGraphics.drawString(this.font, this.playerInventoryTitle, this.inventoryLabelX, this.inventoryLabelY, 0x555555, false);
     }
 
     @Override
@@ -33,34 +40,19 @@ public class CoffeeMachineScreen extends AbstractContainerScreen<CoffeeMachineMe
 
         guiGraphics.blit(TEXTURE, x, y, 0, 0, imageWidth, imageHeight);
 
-        if (menu.isCrafting()) {
-            guiGraphics.blit(TEXTURE, x + 74, y + 35, 176, 14, menu.getScaledProgress() + 1, 16);
+        int scaledProgress = menu.getScaledProgress();
+        if (scaledProgress > 0) {
+            guiGraphics.blit(TEXTURE, x + 66, y + 33, 178, 2, scaledProgress, 10);
         }
 
-        // 绘制水槽
-        int maxWaterHeight = 67;
+        int maxWaterHeight = 66;
         int currentWaterAmount = menu.getWaterAmount();
-        int scaledWaterHeight = 0;
-        switch (currentWaterAmount) {
-            case 1 -> scaledWaterHeight = 23;
-            case 2 -> scaledWaterHeight = 44;
-            case 3 -> scaledWaterHeight = maxWaterHeight;
-        }
+
+        int scaledWaterHeight = (currentWaterAmount * maxWaterHeight) / 3000;
 
         if (scaledWaterHeight > 0) {
-            // 核心参数：
-            // x + 132, y + 12: 屏幕上的起点（要根据你的贴图位置对齐）
-            // 176, 40: 在贴图文件里，“满水条”那个图案的左上角 UV 坐标
-            // 18: 水条宽度
-            // scaledWaterHeight: 我们要画的高度
-
-            // 关键：我们要从下往上画，所以 y 坐标要加上 (总高度 - 当前高度)
-            guiGraphics.blit(TEXTURE,
-                    x + 151, y + 11 + (maxWaterHeight - scaledWaterHeight),
-                    176, 14 + (maxWaterHeight - scaledWaterHeight),
-                    18, scaledWaterHeight);
+            guiGraphics.blit(TEXTURE, x + 151, y + 11 + (maxWaterHeight - scaledWaterHeight), 176, 14 + (maxWaterHeight - scaledWaterHeight), 18, scaledWaterHeight);
         }
-
     }
 
     @Override
@@ -68,5 +60,19 @@ public class CoffeeMachineScreen extends AbstractContainerScreen<CoffeeMachineMe
         renderBackground(guiGraphics);
         super.render(guiGraphics, mouseX, mouseY, delta);
         renderTooltip(guiGraphics, mouseX, mouseY);
+
+        // 计算 GUI 的起始坐标（这一步必须有，因为 mouseX 是全局坐标）
+        int x = (width - imageWidth) / 2;
+        int y = (height - imageHeight) / 2;
+
+        // 水位条的矩形判定范围 (基于你之前绘制水条的坐标 x+151, y+11)
+        // 宽度 18，高度 67
+        if (mouseX >= x + 151 && mouseX <= x + 151 + 18 &&
+                mouseY >= y + 11 && mouseY <= y + 11 + 67) {
+
+            int currentWater = menu.getWaterAmount();
+            Component tooltip = Component.literal("当前水量: " + currentWater + " / 3000 mB");
+            guiGraphics.renderTooltip(this.font, tooltip, mouseX, mouseY);
+        }
     }
 }

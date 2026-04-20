@@ -48,11 +48,11 @@ public class CoffeeMachineMenu extends AbstractContainerMenu {
     }
 
     public int getScaledProgress() {
-        int progress = data.get(0);
-        int maxProgress = data.get(1);
-        int progressArrowSize = 24;
-
-        return maxProgress != 0 && progress != 0 ? progress * progressArrowSize / maxProgress : 0;
+        int progress = this.data.get(0);
+        int maxProgress = this.data.get(1);
+        int arrowWidth = 25;
+        if (maxProgress == 0 || progress == 0) return 0;
+        return (progress * arrowWidth) / maxProgress;
     }
 
     private static final int HOTBAR_SLOT_COUNT = 9;
@@ -68,25 +68,42 @@ public class CoffeeMachineMenu extends AbstractContainerMenu {
     public ItemStack quickMoveStack(Player player, int index) {
         Slot sourceSlot = slots.get(index);
         if (sourceSlot == null || !sourceSlot.hasItem()) return ItemStack.EMPTY;
-
         ItemStack sourceStack = sourceSlot.getItem();
         ItemStack copyOfSourceStack = sourceStack.copy();
 
-        if (index >= VANILLA_FIRST_SLOT_INDEX + VANILLA_SLOT_COUNT) {
-            if (!moveItemStackTo(sourceStack, VANILLA_FIRST_SLOT_INDEX,
-                    VANILLA_FIRST_SLOT_INDEX + VANILLA_SLOT_COUNT, false)) {
+        final int PLAYER_INV_START = 0;
+        final int PLAYER_INV_END = 35;
+        final int TE_SLOT_START = 36;
+        final int TE_SLOT_END = 41;
+        if (index >= TE_SLOT_START && index <= TE_SLOT_END) {
+            if (!moveItemStackTo(sourceStack, PLAYER_INV_START, PLAYER_INV_END + 1, false)) {
                 return ItemStack.EMPTY;
             }
+            if (index == 39 || index == 41) {
+                sourceSlot.onQuickCraft(sourceStack, copyOfSourceStack);
+            }
         }
-        else if (index < VANILLA_FIRST_SLOT_INDEX + VANILLA_SLOT_COUNT) {
+        else if (index >= PLAYER_INV_START && index <= PLAYER_INV_END) {
             if (sourceStack.is(net.minecraft.world.item.Items.WATER_BUCKET) || sourceStack.is(net.minecraft.world.item.Items.BUCKET)) {
                 if (!moveItemStackTo(sourceStack, 40, 41, false)) {
                     return ItemStack.EMPTY;
                 }
             }
-            else {
-                if (!moveItemStackTo(sourceStack, 36, 39, false)) {
+            else if (sourceStack.is(com.kachudelight.kachu.registry.ItemRegistry.COFFEE_BEAN.get())) {
+                if (!moveItemStackTo(sourceStack, 36, 37, false)) {
                     return ItemStack.EMPTY;
+                }
+            }
+            //未来可以在这里添加判断，如果是"辅料"就 move 到 37，如果是"杯子"就 move 到 38
+            else {
+                if (index < 27) {
+                    if (!moveItemStackTo(sourceStack, 27, 36, false)) {
+                        return ItemStack.EMPTY;
+                    }
+                } else if (index < 36) {
+                    if (!moveItemStackTo(sourceStack, 0, 27, false)) {
+                        return ItemStack.EMPTY;
+                    }
                 }
             }
         }
@@ -95,6 +112,10 @@ public class CoffeeMachineMenu extends AbstractContainerMenu {
             sourceSlot.set(ItemStack.EMPTY);
         } else {
             sourceSlot.setChanged();
+        }
+
+        if (sourceStack.getCount() == copyOfSourceStack.getCount()) {
+            return ItemStack.EMPTY;
         }
 
         sourceSlot.onTake(player, sourceStack);
