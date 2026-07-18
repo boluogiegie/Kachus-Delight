@@ -8,7 +8,8 @@ import com.kachudelight.kachu.block.crop.WildCoffeeBlock;
 import com.kachudelight.kachu.block.crop.WildTeaBlock;
 import com.kachudelight.kachu.block.food.KanamiOmeletteRiceBlock;
 import com.kachudelight.kachu.block.food.OmeletteRiceBlock;
-import com.kachudelight.kachu.block.machine.StarlightCoffeeMachineBlock;
+import com.kachudelight.kachu.machine.coffee.StarlightCoffeeMachineBlock;
+import com.kachudelight.kachu.machine.tea.TeaBrewingMachineBlock;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.SoundType;
@@ -34,7 +35,7 @@ public class BlockRegistry {
     public static final RegistryObject<Block> WILD_TEA_BUSH = BLOCKS.register("wild_tea_bush", () -> new WildTeaBlock(BlockBehaviour.Properties.of().mapColor(MapColor.PLANT).noCollission().instabreak().sound(SoundType.GRASS)));
     // 咖啡作物
     public static final RegistryObject<Block> COFFEE_CROP = BLOCKS.register("coffee_crop", () -> new CoffeeBlock(BlockBehaviour.Properties.copy(Blocks.WHEAT)));
-    // 茶叶作物（通过茶叶种植，不注册方块物品）
+    // 茶叶作物
     public static final RegistryObject<Block> TEA_CROP = BLOCKS.register("tea_crop", () -> new TeaCropBlock(BlockBehaviour.Properties.copy(Blocks.WHEAT)));
     // 星芒咖啡机
     public static final RegistryObject<Block> STARLIGHT_COFFEE_MACHINE = BLOCKS.register("starlight_coffee_machine",
@@ -46,5 +47,10 @@ public class BlockRegistry {
                     .noOcclusion()
                     .isViewBlocking((state, world, pos) -> false)
                     .isSuffocating((state, world, pos) -> false)));
+    // 泡茶机（暂用星芒咖啡机模型）
+    public static final RegistryObject<Block> TEA_BREWING_MACHINE = BLOCKS.register("tea_brewing_machine",
+            () -> new TeaBrewingMachineBlock(BlockBehaviour.Properties.of().mapColor(MapColor.METAL)
+                    .strength(3.0F, 6.0F).sound(SoundType.METAL).requiresCorrectToolForDrops().noOcclusion()
+                    .isViewBlocking((state, world, pos) -> false).isSuffocating((state, world, pos) -> false)));
 
 }

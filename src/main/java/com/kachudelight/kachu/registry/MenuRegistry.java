@@ -1,7 +1,8 @@
 package com.kachudelight.kachu.registry;
 
 import com.kachudelight.kachu.KachuDelight;
-import com.kachudelight.kachu.menu.StarlightCoffeeMachineMenu;
+import com.kachudelight.kachu.machine.coffee.StarlightCoffeeMachineMenu;
+import com.kachudelight.kachu.machine.tea.TeaBrewingMachineMenu;
 import net.minecraft.world.inventory.MenuType;
 import net.minecraftforge.common.extensions.IForgeMenuType;
 import net.minecraftforge.registries.DeferredRegister;
@@ -16,4 +17,6 @@ public class MenuRegistry {
     public static final RegistryObject<MenuType<StarlightCoffeeMachineMenu>> STARLIGHT_COFFEE_MACHINE_MENU =
             MENUS.register("starlight_coffee_machine",
                     () -> IForgeMenuType.create(StarlightCoffeeMachineMenu::new));
+    public static final RegistryObject<MenuType<TeaBrewingMachineMenu>> TEA_BREWING_MACHINE_MENU =
+            MENUS.register("tea_brewing_machine", () -> IForgeMenuType.create(TeaBrewingMachineMenu::new));
 }

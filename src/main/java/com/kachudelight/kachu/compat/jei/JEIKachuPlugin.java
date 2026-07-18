@@ -3,8 +3,10 @@ package com.kachudelight.kachu.compat.jei;
 import com.kachudelight.kachu.KachuDelight;
 import com.kachudelight.kachu.registry.BlockRegistry;
 import com.kachudelight.kachu.registry.ItemRegistry;
-import com.kachudelight.kachu.recipe.CoffeeRecipe;
-import com.kachudelight.kachu.recipe.CoffeeRecipeType;
+import com.kachudelight.kachu.machine.coffee.CoffeeRecipe;
+import com.kachudelight.kachu.machine.coffee.CoffeeRecipeType;
+import com.kachudelight.kachu.machine.tea.TeaBrewingRecipe;
+import com.kachudelight.kachu.machine.tea.TeaBrewingRecipeType;
 import mezz.jei.api.IModPlugin;
 import mezz.jei.api.JeiPlugin;
 import mezz.jei.api.registration.IRecipeCatalystRegistration;
@@ -32,6 +34,7 @@ public class JEIKachuPlugin implements IModPlugin {
         OmeletteRiceUpgradeCategory category = new OmeletteRiceUpgradeCategory(registration.getJeiHelpers().getGuiHelper());
         registration.addRecipeCategories(category);
         registration.addRecipeCategories(new StarlightCoffeeMachineCategory(registration.getJeiHelpers().getGuiHelper()));
+        registration.addRecipeCategories(new TeaBrewingMachineCategory(registration.getJeiHelpers().getGuiHelper()));
     }
 
     @Override
@@ -42,11 +45,14 @@ public class JEIKachuPlugin implements IModPlugin {
         if (Minecraft.getInstance().level != null) {
             List<CoffeeRecipe> coffeeRecipes = Minecraft.getInstance().level.getRecipeManager().getAllRecipesFor(CoffeeRecipeType.INSTANCE);
             registration.addRecipes(StarlightCoffeeMachineCategory.STARLIGHT_COFFEE_MACHINE_TYPE, coffeeRecipes);
+            List<TeaBrewingRecipe> teaRecipes = Minecraft.getInstance().level.getRecipeManager().getAllRecipesFor(TeaBrewingRecipeType.INSTANCE);
+            registration.addRecipes(TeaBrewingMachineCategory.RECIPE_TYPE, teaRecipes);
         }
     }
 
     @Override
     public void registerRecipeCatalysts(IRecipeCatalystRegistration registration) {
         registration.addRecipeCatalyst(new ItemStack(BlockRegistry.STARLIGHT_COFFEE_MACHINE.get()), StarlightCoffeeMachineCategory.STARLIGHT_COFFEE_MACHINE_TYPE);
+        registration.addRecipeCatalyst(new ItemStack(BlockRegistry.TEA_BREWING_MACHINE.get()), TeaBrewingMachineCategory.RECIPE_TYPE);
     }
 }

@@ -21,6 +21,7 @@ public class ClientRenderSetup {
             ItemBlockRenderTypes.setRenderLayer(BlockRegistry.COFFEE_CROP.get(), RenderType.cutoutMipped());
             ItemBlockRenderTypes.setRenderLayer(BlockRegistry.TEA_CROP.get(), RenderType.cutoutMipped());
             ItemBlockRenderTypes.setRenderLayer(BlockRegistry.STARLIGHT_COFFEE_MACHINE.get(), RenderType.cutoutMipped());
+            ItemBlockRenderTypes.setRenderLayer(BlockRegistry.TEA_BREWING_MACHINE.get(), RenderType.cutoutMipped());
         // 添加其他镂空渲染的方块
         });
     }

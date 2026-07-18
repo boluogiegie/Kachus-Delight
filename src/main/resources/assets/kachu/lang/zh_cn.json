@@ -11,9 +11,14 @@
   "item.kachu.wild_coffee_bush": "野生咖啡灌木",
   "item.kachu.wild_tea_bush": "野生茶灌木",
   "item.kachu.starlight_coffee_machine": "星芒咖啡机",
-  "item.kachu.coffee_cup": "咖啡杯",
+  "item.kachu.glass_cup": "玻璃杯",
+  "item.kachu.tea_brewing_machine": "泡茶机",
   "item.kachu.tea_leaf": "茶叶",
-  "item.kachu.dried_tea_leaf": "干茶叶",
+  "item.kachu.green_tea_leaf": "绿茶叶",
+  "item.kachu.green_tea": "绿茶",
+  "item.kachu.white_tea_leaf": "白茶叶",
+  "item.kachu.oolong_tea_leaf": "乌龙茶叶",
+  "item.kachu.black_tea_leaf": "红茶叶",
   "item.kachu.plate": "盘子",
 
   "block.kachu.kanami_omelette_rice_block": "香奈美的蛋包饭",
@@ -24,10 +29,12 @@
   "block.kachu.coffee_crop": "咖啡作物",
   "block.kachu.tea_crop": "茶叶作物",
   "block.kachu.starlight_coffee_machine": "星芒咖啡机",
+  "block.kachu.tea_brewing_machine": "泡茶机",
 
   "effect.farmersdelight.comfort": "舒适",
   "effect.farmersdelight.nourishment": "滋养",
 
   "jei.kachu.omelette_rice_upgrade": "香奈美的蛋包饭",
-  "jei.kachudelight.coffee_brewing": "星芒咖啡机"
+  "jei.kachudelight.coffee_brewing": "星芒咖啡机",
+  "jei.kachudelight.tea_brewing": "泡茶机"
 }

@@ -22,6 +22,6 @@ public class FoodList {
     public static final FoodProperties COFFEE_BEAN = new FoodProperties.Builder().nutrition(1).saturationMod(0.1F).fast().build();
     // 茶叶
     public static final FoodProperties TEA_LEAF = new FoodProperties.Builder().nutrition(1).saturationMod(0.5F).build();
-    // 干茶叶
-    public static final FoodProperties DRIED_TEA_LEAF = new FoodProperties.Builder().nutrition(1).saturationMod(0.5F).build();
+    // 绿茶叶、白茶叶、乌龙茶叶和红茶叶
+    public static final FoodProperties PROCESSED_TEA_LEAF = new FoodProperties.Builder().nutrition(1).saturationMod(0.5F).build();
 }
