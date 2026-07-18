@@ -20,4 +20,8 @@ public class FoodList {
     public static final FoodProperties KANAMI_OMELETTE_RICE2= new FoodProperties.Builder().nutrition(20).saturationMod(1.0F).effect(() -> new MobEffectInstance(ModEffects.COMFORT.get(), 2 * 60 * 20, 0), 1.0F).effect(() -> new MobEffectInstance(ModEffects.NOURISHMENT.get(), 2 * 60 * 20, 0), 1.0F).effect(() -> new MobEffectInstance(MobEffects.HEALTH_BOOST, 2 * 60 * 20, 4), 1.0F).effect(() -> new MobEffectInstance(MobEffects.REGENERATION, 60 * 20, 1), 1.0F).build();
     // 咖啡豆
     public static final FoodProperties COFFEE_BEAN = new FoodProperties.Builder().nutrition(1).saturationMod(0.1F).fast().build();
+    // 茶叶
+    public static final FoodProperties TEA_LEAF = new FoodProperties.Builder().nutrition(1).saturationMod(0.5F).build();
+    // 干茶叶
+    public static final FoodProperties DRIED_TEA_LEAF = new FoodProperties.Builder().nutrition(1).saturationMod(0.5F).build();
 }

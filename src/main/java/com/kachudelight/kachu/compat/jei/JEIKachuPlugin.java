@@ -31,7 +31,7 @@ public class JEIKachuPlugin implements IModPlugin {
     public void registerCategories(IRecipeCategoryRegistration registration) {
         OmeletteRiceUpgradeCategory category = new OmeletteRiceUpgradeCategory(registration.getJeiHelpers().getGuiHelper());
         registration.addRecipeCategories(category);
-        registration.addRecipeCategories(new CoffeeMachineCategory(registration.getJeiHelpers().getGuiHelper()));
+        registration.addRecipeCategories(new StarlightCoffeeMachineCategory(registration.getJeiHelpers().getGuiHelper()));
     }
 
     @Override
@@ -41,12 +41,12 @@ public class JEIKachuPlugin implements IModPlugin {
         registration.addRecipes(OmeletteRiceUpgradeCategory.RECIPE_TYPE, recipes);
         if (Minecraft.getInstance().level != null) {
             List<CoffeeRecipe> coffeeRecipes = Minecraft.getInstance().level.getRecipeManager().getAllRecipesFor(CoffeeRecipeType.INSTANCE);
-            registration.addRecipes(CoffeeMachineCategory.COFFEE_MACHINE_TYPE, coffeeRecipes);
+            registration.addRecipes(StarlightCoffeeMachineCategory.STARLIGHT_COFFEE_MACHINE_TYPE, coffeeRecipes);
         }
     }
 
     @Override
     public void registerRecipeCatalysts(IRecipeCatalystRegistration registration) {
-        registration.addRecipeCatalyst(new ItemStack(BlockRegistry.COFFEE_MACHINE.get()), CoffeeMachineCategory.COFFEE_MACHINE_TYPE);
+        registration.addRecipeCatalyst(new ItemStack(BlockRegistry.STARLIGHT_COFFEE_MACHINE.get()), StarlightCoffeeMachineCategory.STARLIGHT_COFFEE_MACHINE_TYPE);
     }
 }

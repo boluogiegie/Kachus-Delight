@@ -1,7 +1,7 @@
 package com.kachudelight.kachu.registry;
 
 import com.kachudelight.kachu.KachuDelight;
-import com.kachudelight.kachu.block.entity.CoffeeMachineBlockEntity;
+import com.kachudelight.kachu.block.entity.StarlightCoffeeMachineBlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -11,11 +11,11 @@ public class BlockEntityRegistry {
     public static final DeferredRegister<BlockEntityType<?>> BLOCK_ENTITIES =
             DeferredRegister.create(ForgeRegistries.BLOCK_ENTITY_TYPES, KachuDelight.MOD_ID);
 
-    // 咖啡机方块实体
-    public static final RegistryObject<BlockEntityType<CoffeeMachineBlockEntity>> COFFEE_MACHINE =
-            BLOCK_ENTITIES.register("coffee_machine",
+    // 星芒咖啡机方块实体
+    public static final RegistryObject<BlockEntityType<StarlightCoffeeMachineBlockEntity>> STARLIGHT_COFFEE_MACHINE =
+            BLOCK_ENTITIES.register("starlight_coffee_machine",
                     () -> BlockEntityType.Builder.of(
-                            CoffeeMachineBlockEntity::new,
-                            BlockRegistry.COFFEE_MACHINE.get()
+                            StarlightCoffeeMachineBlockEntity::new,
+                            BlockRegistry.STARLIGHT_COFFEE_MACHINE.get()
                     ).build(null));
 }

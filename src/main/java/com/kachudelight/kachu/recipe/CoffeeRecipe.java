@@ -28,7 +28,7 @@ public class CoffeeRecipe implements Recipe<SimpleContainer> {
 
     @Override
     public boolean matches(SimpleContainer container, Level level) {
-        // 简单的匹配逻辑，后续需要根据咖啡机槽位实现
+        // 简单的匹配逻辑，后续需要根据星芒咖啡机槽位实现
         if (recipeItems.size() != 3) return false; // 需要3个输入
 
         // 检查第一个槽位（咖啡豆）

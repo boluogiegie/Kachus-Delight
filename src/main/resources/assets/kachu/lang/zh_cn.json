@@ -9,18 +9,25 @@
   "item.kachu.kanami_omelette_rice2": "吃了两口的香奈美的蛋包饭",
   "item.kachu.coffee_bean": "咖啡豆",
   "item.kachu.wild_coffee_bush": "野生咖啡灌木",
-  "item.kachu.coffee_machine": "咖啡机",
+  "item.kachu.wild_tea_bush": "野生茶灌木",
+  "item.kachu.starlight_coffee_machine": "星芒咖啡机",
+  "item.kachu.coffee_cup": "咖啡杯",
+  "item.kachu.tea_leaf": "茶叶",
+  "item.kachu.dried_tea_leaf": "干茶叶",
+  "item.kachu.plate": "盘子",
 
   "block.kachu.kanami_omelette_rice_block": "香奈美的蛋包饭",
   "block.kachu.omelette_rice_block": "蛋包饭",
   "block.kachu.kanami_plate": "盘子",
   "block.kachu.wild_coffee_bush": "野生咖啡灌木",
+  "block.kachu.wild_tea_bush": "野生茶灌木",
   "block.kachu.coffee_crop": "咖啡作物",
-  "block.kachu.coffee_machine": "咖啡机",
+  "block.kachu.tea_crop": "茶叶作物",
+  "block.kachu.starlight_coffee_machine": "星芒咖啡机",
 
   "effect.farmersdelight.comfort": "舒适",
   "effect.farmersdelight.nourishment": "滋养",
 
   "jei.kachu.omelette_rice_upgrade": "香奈美的蛋包饭",
-  "jei.kachudelight.coffee_brewing": "咖啡机"
+  "jei.kachudelight.coffee_brewing": "星芒咖啡机"
 }

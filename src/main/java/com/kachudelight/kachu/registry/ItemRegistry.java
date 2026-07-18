@@ -4,6 +4,8 @@ import com.kachudelight.kachu.KachuDelight;
 import com.kachudelight.kachu.item.FoodList;
 import com.kachudelight.kachu.item.food.KanamiOmeletteRiceItem;
 import com.kachudelight.kachu.item.food.OmeletteRiceItem;
+import com.kachudelight.kachu.item.food.QuickEdibleItem;
+import com.kachudelight.kachu.item.food.TeaLeafItem;
 import net.minecraft.world.item.*;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -15,8 +17,18 @@ public class ItemRegistry {
     public static final RegistryObject<Item> COFFEE_BEAN = ITEMS.register("coffee_bean", () -> new ItemNameBlockItem(BlockRegistry.COFFEE_CROP.get(), new Item.Properties().food(FoodList.COFFEE_BEAN)));
     // 野生咖啡灌木
     public static final RegistryObject<Item> WILD_COFFEE_BUSH = ITEMS.register("wild_coffee_bush", () -> new BlockItem(BlockRegistry.WILD_COFFEE_BUSH.get(), new Item.Properties()));
-    // 咖啡机
-    public static final RegistryObject<Item> COFFEE_MACHINE = ITEMS.register("coffee_machine", () -> new BlockItem(BlockRegistry.COFFEE_MACHINE.get(), new Item.Properties()));
+    // 野生茶灌木
+    public static final RegistryObject<Item> WILD_TEA_BUSH = ITEMS.register("wild_tea_bush", () -> new BlockItem(BlockRegistry.WILD_TEA_BUSH.get(), new Item.Properties()));
+    // 星芒咖啡机
+    public static final RegistryObject<Item> STARLIGHT_COFFEE_MACHINE = ITEMS.register("starlight_coffee_machine", () -> new BlockItem(BlockRegistry.STARLIGHT_COFFEE_MACHINE.get(), new Item.Properties()));
+    // 咖啡杯
+    public static final RegistryObject<Item> COFFEE_CUP = ITEMS.register("coffee_cup", () -> new Item(new Item.Properties().stacksTo(16)));
+    // 茶叶
+    public static final RegistryObject<Item> TEA_LEAF = ITEMS.register("tea_leaf", () -> new TeaLeafItem(BlockRegistry.TEA_CROP.get(), new Item.Properties().food(FoodList.TEA_LEAF)));
+    // 干茶叶
+    public static final RegistryObject<Item> DRIED_TEA_LEAF = ITEMS.register("dried_tea_leaf", () -> new QuickEdibleItem(new Item.Properties().food(FoodList.DRIED_TEA_LEAF)));
+    // 盘子
+    public static final RegistryObject<Item> PLATE = ITEMS.register("plate", () -> new Item(new Item.Properties().stacksTo(64)));
 
     public static RegistryObject<Item> OMELETTE_RICE;
     public static RegistryObject<Item> OMELETTE_RICE1;

@@ -9,17 +9,25 @@
   "item.kachu.kanami_omelette_rice2": "Kanami's Omelette Rice (Two Bites)",
   "item.kachu.coffee_bean": "Coffee Bean",
   "item.kachu.wild_coffee_bush": "Wild Coffee Bush",
-  "item.kachu.coffee_machine": "Coffee Machine",
+  "item.kachu.wild_tea_bush": "Wild Tea Bush",
+  "item.kachu.starlight_coffee_machine": "Starlight Coffee Machine",
+  "item.kachu.coffee_cup": "Coffee Cup",
+  "item.kachu.tea_leaf": "Tea Leaf",
+  "item.kachu.dried_tea_leaf": "Dried Tea Leaf",
+  "item.kachu.plate": "Plate",
 
   "block.kachu.kanami_omelette_rice_block": "Kanami's Omelette Rice",
   "block.kachu.omelette_rice_block": "Omelette Rice",
   "block.kachu.kanami_plate": "Plate",
   "block.kachu.wild_coffee_bush": "Wild Coffee Bush",
+  "block.kachu.wild_tea_bush": "Wild Tea Bush",
   "block.kachu.coffee_crop": "Coffee Plant",
-  "block.kachu.coffee_machine": "Coffee Machine",
+  "block.kachu.tea_crop": "Tea Plant",
+  "block.kachu.starlight_coffee_machine": "Starlight Coffee Machine",
 
   "effect.farmersdelight.comfort": "Comfort",
   "effect.farmersdelight.nourishment": "Nourishment",
 
-  "jei.kachu.omelette_rice_upgrade": "Kanami's Omelette Rice"
+  "jei.kachu.omelette_rice_upgrade": "Kanami's Omelette Rice",
+  "jei.kachudelight.coffee_brewing": "Starlight Coffee Machine"
 }

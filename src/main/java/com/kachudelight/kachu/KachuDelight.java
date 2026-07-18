@@ -1,7 +1,7 @@
 package com.kachudelight.kachu;
 
 import com.kachudelight.kachu.registry.*;
-import com.kachudelight.kachu.screen.CoffeeMachineScreen;
+import com.kachudelight.kachu.screen.StarlightCoffeeMachineScreen;
 import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
@@ -40,8 +40,8 @@ public class KachuDelight {
 
     private void clientSetup(FMLClientSetupEvent event) {
         event.enqueueWork(() -> {
-            // 注册咖啡机屏幕
-            MenuScreens.register(MenuRegistry.COFFEE_MACHINE_MENU.get(), CoffeeMachineScreen::new);
+            // 注册星芒咖啡机屏幕
+            MenuScreens.register(MenuRegistry.STARLIGHT_COFFEE_MACHINE_MENU.get(), StarlightCoffeeMachineScreen::new);
         });
     }
 

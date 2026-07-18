@@ -17,12 +17,12 @@ public class RecipeRegistry {
     public static final DeferredRegister<RecipeType<?>> RECIPE_TYPES =
             DeferredRegister.create(ForgeRegistries.RECIPE_TYPES, KachuDelight.MOD_ID);
 
-    // 咖啡机配方类型
+    // 星芒咖啡机配方类型
     public static final RegistryObject<RecipeType<CoffeeRecipe>> COFFEE_RECIPE_TYPE =
             RECIPE_TYPES.register("coffee_brewing",
                     () -> CoffeeRecipeType.INSTANCE);
 
-    // 咖啡机配方序列化器
+    // 星芒咖啡机配方序列化器
     public static final RegistryObject<RecipeSerializer<CoffeeRecipe>> COFFEE_RECIPE_SERIALIZER =
             RECIPE_SERIALIZERS.register("coffee_brewing",
                     CoffeeRecipeSerializer::new);
