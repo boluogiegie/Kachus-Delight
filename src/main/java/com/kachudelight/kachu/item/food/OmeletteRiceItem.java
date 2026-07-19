@@ -90,6 +90,9 @@ public class OmeletteRiceItem extends PlaceableConsumableItem {
             BlockState stateToPlace = (stateForPlacement != null) ? stateForPlacement : this.blockToPlace.defaultBlockState();
             stateToPlace = stateToPlace.setValue(AbstractFoodBlock.BITES, this.biteStage);
 
+            if (!stateToPlace.canSurvive(level, placePos)) {
+                return InteractionResult.FAIL;
+            }
             if (level.setBlock(placePos, stateToPlace, 3)) {
                 if (!level.isClientSide) {
                     level.playSound(null, placePos, SoundEvents.WOOL_PLACE, SoundSource.BLOCKS, 1.0F, 1.0F);

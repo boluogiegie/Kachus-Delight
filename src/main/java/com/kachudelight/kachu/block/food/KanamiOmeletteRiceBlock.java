@@ -71,7 +71,7 @@ public class KanamiOmeletteRiceBlock extends AbstractFoodBlock {
 
     @Override
     public ItemStack getContainerItem() {
-        return new ItemStack(Items.BOWL); // 返回碗
+        return new ItemStack(Items.BOWL);
     }
     public @NotNull Block getContainerBlock() {
         return BlockRegistry.KANAMI_PLATE.get();

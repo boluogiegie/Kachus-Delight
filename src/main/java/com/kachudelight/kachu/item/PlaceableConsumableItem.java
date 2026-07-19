@@ -18,7 +18,7 @@ public class PlaceableConsumableItem extends ConsumableItem {
     protected final Block blockToPlace;
 
     public PlaceableConsumableItem(Block blockToPlace, Properties properties) {
-        super(properties, true); // 总是显示食物效果提示
+        super(properties, true);
         this.blockToPlace = blockToPlace;
     }
 

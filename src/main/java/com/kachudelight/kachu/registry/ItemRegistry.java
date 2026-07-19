@@ -29,8 +29,7 @@ public class ItemRegistry {
     // 绿茶叶
     public static final RegistryObject<Item> GREEN_TEA_LEAF = registerProcessedTeaLeaf("green_tea_leaf");
     // 绿茶饮品（饮用逻辑与效果后续补充）
-    public static final RegistryObject<Item> GREEN_TEA = ITEMS.register("green_tea",
-            () -> new Item(new Item.Properties().stacksTo(16)));
+    public static final RegistryObject<Item> GREEN_TEA = ITEMS.register("green_tea", () -> new Item(new Item.Properties().stacksTo(16)));
     // 白茶叶
     public static final RegistryObject<Item> WHITE_TEA_LEAF = registerProcessedTeaLeaf("white_tea_leaf");
     // 乌龙茶叶

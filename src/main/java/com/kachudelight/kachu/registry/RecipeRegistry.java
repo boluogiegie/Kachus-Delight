@@ -21,16 +21,8 @@ public class RecipeRegistry {
             DeferredRegister.create(ForgeRegistries.RECIPE_TYPES, KachuDelight.MOD_ID);
 
     // 星芒咖啡机配方类型
-    public static final RegistryObject<RecipeType<CoffeeRecipe>> COFFEE_RECIPE_TYPE =
-            RECIPE_TYPES.register("coffee_brewing",
-                    () -> CoffeeRecipeType.INSTANCE);
-
-    // 星芒咖啡机配方序列化器
-    public static final RegistryObject<RecipeSerializer<CoffeeRecipe>> COFFEE_RECIPE_SERIALIZER =
-            RECIPE_SERIALIZERS.register("coffee_brewing",
-                    () -> CoffeeRecipeSerializer.INSTANCE);
-    public static final RegistryObject<RecipeType<TeaBrewingRecipe>> TEA_BREWING_RECIPE_TYPE =
-            RECIPE_TYPES.register("tea_brewing", () -> TeaBrewingRecipeType.INSTANCE);
-    public static final RegistryObject<RecipeSerializer<TeaBrewingRecipe>> TEA_BREWING_RECIPE_SERIALIZER =
-            RECIPE_SERIALIZERS.register("tea_brewing", () -> TeaBrewingRecipeSerializer.INSTANCE);
+    public static final RegistryObject<RecipeType<CoffeeRecipe>> COFFEE_RECIPE_TYPE = RECIPE_TYPES.register("coffee_brewing", () -> CoffeeRecipeType.INSTANCE);
+    public static final RegistryObject<RecipeSerializer<CoffeeRecipe>> COFFEE_RECIPE_SERIALIZER = RECIPE_SERIALIZERS.register("coffee_brewing", () -> CoffeeRecipeSerializer.INSTANCE);
+    public static final RegistryObject<RecipeType<TeaBrewingRecipe>> TEA_BREWING_RECIPE_TYPE = RECIPE_TYPES.register("tea_brewing", () -> TeaBrewingRecipeType.INSTANCE);
+    public static final RegistryObject<RecipeSerializer<TeaBrewingRecipe>> TEA_BREWING_RECIPE_SERIALIZER = RECIPE_SERIALIZERS.register("tea_brewing", () -> TeaBrewingRecipeSerializer.INSTANCE);
 }

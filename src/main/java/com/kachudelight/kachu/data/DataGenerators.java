@@ -23,9 +23,6 @@ public class DataGenerators {
         generator.addProvider(event.includeServer(), new KachuDatapackRegistriesGen(output, lookupProvider));
 
         // 添加其他数据提供器：
-        // - 物品模型提供器
-        // - 方块状态提供器
-        // - 战利品表提供器
-        // - 配方提供器
+
     }
 }

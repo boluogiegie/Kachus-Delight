@@ -10,13 +10,7 @@ import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 
 public class MenuRegistry {
-    public static final DeferredRegister<MenuType<?>> MENUS =
-            DeferredRegister.create(ForgeRegistries.MENU_TYPES, KachuDelight.MOD_ID);
-
-    // 星芒咖啡机菜单
-    public static final RegistryObject<MenuType<StarlightCoffeeMachineMenu>> STARLIGHT_COFFEE_MACHINE_MENU =
-            MENUS.register("starlight_coffee_machine",
-                    () -> IForgeMenuType.create(StarlightCoffeeMachineMenu::new));
-    public static final RegistryObject<MenuType<TeaBrewingMachineMenu>> TEA_BREWING_MACHINE_MENU =
-            MENUS.register("tea_brewing_machine", () -> IForgeMenuType.create(TeaBrewingMachineMenu::new));
+    public static final DeferredRegister<MenuType<?>> MENUS = DeferredRegister.create(ForgeRegistries.MENU_TYPES, KachuDelight.MOD_ID);
+    public static final RegistryObject<MenuType<StarlightCoffeeMachineMenu>> STARLIGHT_COFFEE_MACHINE_MENU = MENUS.register("starlight_coffee_machine", () -> IForgeMenuType.create(StarlightCoffeeMachineMenu::new));
+    public static final RegistryObject<MenuType<TeaBrewingMachineMenu>> TEA_BREWING_MACHINE_MENU = MENUS.register("tea_brewing_machine", () -> IForgeMenuType.create(TeaBrewingMachineMenu::new));
 }

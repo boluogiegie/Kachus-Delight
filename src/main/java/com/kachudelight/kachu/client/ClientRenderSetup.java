@@ -1,4 +1,4 @@
-package com.kachudelight.kachu.client; // 建议创建client包来放客户端代码
+package com.kachudelight.kachu.client;
 
 import com.kachudelight.kachu.KachuDelight;
 import com.kachudelight.kachu.registry.BlockRegistry;
@@ -27,14 +27,9 @@ public class ClientRenderSetup {
     }
 
     @SubscribeEvent
-    public static void registerBlockColors(RegisterColorHandlersEvent.Block event) {
-        // 为咖啡作物注册固定颜色（不使用原版的阶段颜色变化）
-        event.register((state, world, pos, tintIndex) -> {
-            // 返回一个固定颜色（白色，即不应用任何颜色滤镜）
-            return -1; // -1 表示使用原贴图颜色，不应用额外颜色
-        }, BlockRegistry.COFFEE_CROP.get());
+    public static void registerBlockColors(RegisterColorHandlersEvent.Block event) {event.register((state, world, pos, tintIndex) -> {return -1;}, BlockRegistry.COFFEE_CROP.get());
 
-        // 环境颜色（随生物群系变化）
+        // 环境颜色
         // event.register((state, world, pos, tintIndex) -> {
         //     if (world != null && pos != null) {
         //         // 不受生物群系影响

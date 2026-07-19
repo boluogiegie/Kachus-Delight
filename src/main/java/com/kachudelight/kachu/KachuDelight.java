@@ -34,14 +34,12 @@ public class KachuDelight {
         RecipeRegistry.RECIPE_TYPES.register(modEventBus);
         RecipeRegistry.RECIPE_SERIALIZERS.register(modEventBus);
         CREATIVE_MODE_TABS.register(modEventBus);
-
         modEventBus.addListener(this::clientSetup);
 
     }
 
     private void clientSetup(FMLClientSetupEvent event) {
         event.enqueueWork(() -> {
-            // 注册星芒咖啡机屏幕
             MenuScreens.register(MenuRegistry.STARLIGHT_COFFEE_MACHINE_MENU.get(), StarlightCoffeeMachineScreen::new);
             MenuScreens.register(MenuRegistry.TEA_BREWING_MACHINE_MENU.get(), TeaBrewingMachineScreen::new);
         });
