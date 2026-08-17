@@ -1,0 +1,6 @@
+{
+  "type": "forge:add_features",
+  "biomes": "#kachu:spawns/tea",
+  "features": "kachu:wild_tea_bush",
+  "step": "vegetal_decoration"
+}

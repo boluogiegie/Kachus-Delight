@@ -1,0 +1,12 @@
+{
+  "type": "kachu:tea_brewing",
+  "ingredients": [
+    {
+      "item": "minecraft:stick"
+    }
+  ],
+  "output": {
+    "item": "minecraft:stick",
+    "count": 1
+  }
+}

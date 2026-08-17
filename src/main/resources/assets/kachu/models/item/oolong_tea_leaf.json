@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "kachu:item/oolong_tea_leaf"
+  }
+}

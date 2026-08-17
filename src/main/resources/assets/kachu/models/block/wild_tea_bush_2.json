@@ -1,0 +1,28 @@
+{
+  "textures": {
+    "0": "kachu:block/wild_tea_bush",
+    "particle": "kachu:block/wild_tea_bush"
+  },
+  "elements": [
+    {
+      "shade": false,
+      "from": [-2, 0, 9],
+      "to": [14, 16, 9],
+      "rotation": {"angle": 45, "axis": "y", "origin": [6, 8, 9]},
+      "faces": {
+        "north": {"uv": [0, 0, 16, 16], "texture": "#0"},
+        "south": {"uv": [16, 0, 0, 16], "texture": "#0"}
+      }
+    },
+    {
+      "shade": false,
+      "from": [-2, 0, 9],
+      "to": [14, 16, 9],
+      "rotation": {"angle": -45, "axis": "y", "origin": [6, 8, 9]},
+      "faces": {
+        "north": {"uv": [16, 0, 0, 16], "texture": "#0"},
+        "south": {"uv": [0, 0, 16, 16], "texture": "#0"}
+      }
+    }
+  ]
+}

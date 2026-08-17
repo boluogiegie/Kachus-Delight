@@ -1,0 +1,29 @@
+{
+  "ambientocclusion": true,
+  "textures": {
+    "0": "kachu:block/tea_crop_stage3",
+    "particle": "kachu:block/tea_crop_stage3"
+  },
+  "elements": [
+    {
+      "shade": false,
+      "from": [0, -1, 8],
+      "to": [16, 15, 8],
+      "rotation": {"angle": 45, "axis": "y", "origin": [8, 7, 8]},
+      "faces": {
+        "north": {"uv": [0, 0, 16, 16], "texture": "#0"},
+        "south": {"uv": [16, 0, 0, 16], "texture": "#0"}
+      }
+    },
+    {
+      "shade": false,
+      "from": [8, -1, 0],
+      "to": [8, 15, 16],
+      "rotation": {"angle": 45, "axis": "y", "origin": [8, 7, 8]},
+      "faces": {
+        "east": {"uv": [0, 0, 16, 16], "texture": "#0"},
+        "west": {"uv": [16, 0, 0, 16], "texture": "#0"}
+      }
+    }
+  ]
+}

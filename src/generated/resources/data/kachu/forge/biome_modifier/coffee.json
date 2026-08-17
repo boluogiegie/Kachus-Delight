@@ -1,0 +1,6 @@
+{
+  "type": "forge:add_features",
+  "biomes": "#kachu:spawns/coffee",
+  "features": "kachu:wild_coffee",
+  "step": "vegetal_decoration"
+}

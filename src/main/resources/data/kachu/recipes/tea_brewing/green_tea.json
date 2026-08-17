@@ -1,0 +1,15 @@
+{
+  "type": "kachu:tea_brewing",
+  "ingredients": [
+    {
+      "item": "kachu:green_tea_leaf"
+    },
+    {
+      "item": "kachu:green_tea_leaf"
+    }
+  ],
+  "output": {
+    "item": "kachu:green_tea",
+    "count": 1
+  }
+}

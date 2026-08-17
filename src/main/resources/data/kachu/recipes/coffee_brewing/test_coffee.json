@@ -1,0 +1,18 @@
+{
+  "type": "kachu:coffee_brewing",
+  "ingredients": [
+    {
+      "item": "kachu:coffee_bean"
+    },
+    {
+      "item": "minecraft:sugar"
+    },
+    {
+      "item": "kachu:glass_cup"
+    }
+  ],
+  "output": {
+    "item": "minecraft:beetroot",
+    "count": 1
+  }
+}
