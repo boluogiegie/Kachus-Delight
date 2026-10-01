@@ -1,0 +1,32 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "DBD",
+    "LRL",
+    "ICI"
+  ],
+  "key": {
+    "D": {
+      "item": "minecraft:green_dye"
+    },
+    "B": {
+      "item": "minecraft:lapis_block"
+    },
+    "L": {
+      "item": "minecraft:lapis_lazuli"
+    },
+    "R": {
+      "item": "minecraft:redstone"
+    },
+    "I": {
+      "item": "minecraft:iron_ingot"
+    },
+    "C": {
+      "item": "minecraft:cauldron"
+    }
+  },
+  "result": {
+    "item": "kachu:tea_brewing_machine",
+    "count": 1
+  }
+}

@@ -32,8 +32,6 @@ import java.util.concurrent.atomic.AtomicReference;
 
 public class TeaBrewingMachineBlock extends BaseEntityBlock {
     public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
-    private static final VoxelShape BASE_SHAPE_NORTH =
-            Block.box(3.0D, 0.0D, 2.38128D, 13.0D, 15.25D, 14.0D);
 
     public TeaBrewingMachineBlock(Properties properties) {
         super(properties);
@@ -42,8 +40,15 @@ public class TeaBrewingMachineBlock extends BaseEntityBlock {
 
     @Override
     public VoxelShape getShape(BlockState state, BlockGetter world, BlockPos pos, CollisionContext context) {
+        VoxelShape baseShapeNorth = Shapes.or(
+                Block.box(3.0D, 0.0D, 3.0D, 13.0D, 1.0D, 14.0D),
+                Block.box(3.0D, 1.0D, 9.0D, 13.0D, 10.25D, 14.0D),
+                Block.box(11.5D, 5.25D, 4.0D, 12.0D, 10.25D, 9.0D),
+                Block.box(4.0D, 5.25D, 4.0D, 4.5D, 10.25D, 9.0D),
+                Block.box(3.0D, 10.25D, 4.0D, 13.0D, 15.25D, 14.0D)
+        );
         Direction facing = state.getValue(FACING);
-        return getRotatedShape(BASE_SHAPE_NORTH, facing);
+        return getRotatedShape(baseShapeNorth, facing);
     }
 
     @Override

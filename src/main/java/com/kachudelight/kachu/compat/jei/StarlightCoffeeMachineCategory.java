@@ -36,7 +36,7 @@ public class StarlightCoffeeMachineCategory implements IRecipeCategory<CoffeeRec
         this.background = helper.createDrawable(TEXTURE, 0, 0, 176, 80);
         this.icon = helper.createDrawableIngredient(VanillaTypes.ITEM_STACK, new ItemStack(BlockRegistry.STARLIGHT_COFFEE_MACHINE.get()));
         this.arrow = helper.drawableBuilder(TEXTURE, 178, 2, 31, 10)
-                .buildAnimated(100, IDrawableAnimated.StartDirection.LEFT, false);
+                .buildAnimated(200, IDrawableAnimated.StartDirection.LEFT, false);
         this.waterTank = helper.createDrawable(TEXTURE, 176, 14, 18, 97);
     }
 
@@ -106,7 +106,7 @@ public class StarlightCoffeeMachineCategory implements IRecipeCategory<CoffeeRec
 
         // 2. 判断鼠标是否悬停在【水槽】区域
         if (mouseX >= 151 && mouseX <= 169 && mouseY >= 11 && mouseY <= 78) {
-            tooltip.add(Component.literal("消耗200 mB水喵~"));
+            tooltip.add(Component.literal("消耗250 mB水喵~"));
         }
     }
 }

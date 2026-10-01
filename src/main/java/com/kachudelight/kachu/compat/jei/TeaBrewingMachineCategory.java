@@ -3,7 +3,6 @@ package com.kachudelight.kachu.compat.jei;
 import com.kachudelight.kachu.KachuDelight;
 import com.kachudelight.kachu.machine.tea.TeaBrewingRecipe;
 import com.kachudelight.kachu.registry.BlockRegistry;
-import com.kachudelight.kachu.registry.ItemRegistry;
 import mezz.jei.api.constants.VanillaTypes;
 import mezz.jei.api.gui.builder.IRecipeLayoutBuilder;
 import mezz.jei.api.gui.builder.ITooltipBuilder;
@@ -20,6 +19,7 @@ import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 
 public class TeaBrewingMachineCategory implements IRecipeCategory<TeaBrewingRecipe> {
     public static final RecipeType<TeaBrewingRecipe> RECIPE_TYPE =
@@ -64,7 +64,7 @@ public class TeaBrewingMachineCategory implements IRecipeCategory<TeaBrewingReci
                     .addIngredients(recipe.getIngredients().get(i));
         }
         builder.addSlot(RecipeIngredientRole.INPUT, 72, 48)
-                .addItemStack(new ItemStack(ItemRegistry.GLASS_CUP.get()));
+                .addItemStack(new ItemStack(Items.GLASS_BOTTLE));
         builder.addSlot(RecipeIngredientRole.OUTPUT, 103, 28)
                 .addItemStack(recipe.getResultItem(Minecraft.getInstance().level.registryAccess()));
     }

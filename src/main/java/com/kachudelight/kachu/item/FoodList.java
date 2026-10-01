@@ -3,9 +3,22 @@ package com.kachudelight.kachu.item;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.food.FoodProperties;
+import com.kachudelight.kachu.registry.EffectRegistry;
 import vectorwing.farmersdelight.common.registry.ModEffects;
 
 public class FoodList {
+    // 无糖基础饮品不恢复饱食度和饱和度，满饱食度也可饮用。
+    public static final FoodProperties COFFEE_DRINK_VER_61 = coffeeDrink(5 * 60 * 20);
+    public static final FoodProperties COFFEE_DRINK_VER_62 = coffeeDrink(10 * 60 * 20);
+
+    private static FoodProperties coffeeDrink(int duration) {
+        return new FoodProperties.Builder().nutrition(0).saturationMod(0.0F).alwaysEat()
+                .effect(() -> new MobEffectInstance(EffectRegistry.ALERTNESS.get(), duration, 0), 1.0F).build();
+    }
+    public static final FoodProperties TEA_DRINK = new FoodProperties.Builder()
+            .nutrition(0).saturationMod(0.0F).alwaysEat()
+            .effect(() -> new MobEffectInstance(ModEffects.COMFORT.get(), 3 * 60 * 20, 0), 1.0F)
+            .build();
     // 蛋包饭
     public static final FoodProperties OMELETTE_RICE = new FoodProperties.Builder().nutrition(4).saturationMod(0.8F).effect(() -> new MobEffectInstance(ModEffects.COMFORT.get(), 30 * 20, 0), 1.0F).build();
     // 吃过一口的蛋包饭

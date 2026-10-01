@@ -1,6 +1,5 @@
 package com.kachudelight.kachu.machine.tea;
 
-import com.kachudelight.kachu.registry.ItemRegistry;
 import com.kachudelight.kachu.registry.MenuRegistry;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.world.entity.player.Inventory;
@@ -70,7 +69,7 @@ public class TeaBrewingMachineMenu extends AbstractContainerMenu {
         } else if (index >= 0 && index < 36) {
             if (sourceStack.is(Items.WATER_BUCKET) || sourceStack.is(Items.BUCKET)) {
                 if (!moveItemStackTo(sourceStack, 42, 43, false)) return ItemStack.EMPTY;
-            } else if (sourceStack.is(ItemRegistry.GLASS_CUP.get())) {
+            } else if (sourceStack.is(Items.GLASS_BOTTLE)) {
                 if (!moveItemStackTo(sourceStack, 40, 41, false)) return ItemStack.EMPTY;
             } else if (!moveItemStackTo(sourceStack, 36, 40, false)) {
                 if (index < 27) {

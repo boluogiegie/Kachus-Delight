@@ -30,6 +30,7 @@ public class StarlightCoffeeMachineBlockEntity extends BlockEntity implements Me
 
     private int waterAmount = 0;
     public static final int MAX_WATER = 3000;
+    public static final int WATER_PER_BREW = 250;
     public static final int INPUT_SLOT = 0;
     public static final int FUEL_SLOT = 1;
     public static final int OUTPUT_SLOT = 2;
@@ -48,8 +49,8 @@ public class StarlightCoffeeMachineBlockEntity extends BlockEntity implements Me
         public boolean isItemValid(int slot, @NotNull ItemStack stack) {
             return switch (slot) {
                 case INPUT_SLOT -> stack.is(com.kachudelight.kachu.registry.ItemRegistry.COFFEE_BEAN.get());
-                case FUEL_SLOT -> true; //辅料包还没做，暂时允许放入任何物品
-                case CONTAINER_SLOT -> stack.is(com.kachudelight.kachu.registry.ItemRegistry.GLASS_CUP.get());
+                case FUEL_SLOT -> isCoffeeAdditive(stack);
+                case CONTAINER_SLOT -> stack.is(com.kachudelight.kachu.registry.ItemRegistry.COFFEE_CUP.get());
                 case WATER_IN_SLOT -> stack.is(net.minecraft.world.item.Items.WATER_BUCKET) || stack.is(net.minecraft.world.item.Items.BUCKET);
                 case OUTPUT_SLOT, WATER_OUT_SLOT -> false;
                 default -> super.isItemValid(slot, stack);
@@ -60,9 +61,14 @@ public class StarlightCoffeeMachineBlockEntity extends BlockEntity implements Me
 
     private LazyOptional<IItemHandler> lazyItemHandler = LazyOptional.empty();
 
+    public static boolean isCoffeeAdditive(ItemStack stack) {
+        return stack.is(com.kachudelight.kachu.registry.ItemRegistry.STARLIGHT_COFFEE_VER_23_8_19_61.get())
+                || stack.is(com.kachudelight.kachu.registry.ItemRegistry.STARLIGHT_COFFEE_VER_23_8_19_62.get());
+    }
+
     protected final ContainerData data;
     private int progress = 0;
-    private int maxProgress = 100;
+    private int maxProgress = 200;
 
     public StarlightCoffeeMachineBlockEntity(BlockPos pos, BlockState state) {
         super(BlockEntityRegistry.STARLIGHT_COFFEE_MACHINE.get(), pos, state);
@@ -240,7 +246,7 @@ public class StarlightCoffeeMachineBlockEntity extends BlockEntity implements Me
             entity.itemHandler.extractItem(FUEL_SLOT, 1, false);
             entity.itemHandler.extractItem(CONTAINER_SLOT, 1, false);
 
-            entity.waterAmount -= 200; // 消耗 200ml
+            entity.waterAmount -= WATER_PER_BREW;
 
             // 添加输出
             ItemStack result = recipe.get().getResultItem(level.registryAccess()).copy();
@@ -256,7 +262,7 @@ public class StarlightCoffeeMachineBlockEntity extends BlockEntity implements Me
     }
 
     private static boolean hasRecipe(StarlightCoffeeMachineBlockEntity entity) {
-        if (entity.waterAmount < 200) return false;
+        if (entity.waterAmount < WATER_PER_BREW) return false;
         Level level = entity.level;
         SimpleContainer inventory = new SimpleContainer(entity.itemHandler.getSlots());
         for (int i = 0; i < entity.itemHandler.getSlots(); i++) {

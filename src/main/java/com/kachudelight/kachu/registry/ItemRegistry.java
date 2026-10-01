@@ -2,6 +2,7 @@ package com.kachudelight.kachu.registry;
 
 import com.kachudelight.kachu.KachuDelight;
 import com.kachudelight.kachu.item.FoodList;
+import com.kachudelight.kachu.item.food.DrinkItem;
 import com.kachudelight.kachu.item.food.KanamiOmeletteRiceItem;
 import com.kachudelight.kachu.item.food.OmeletteRiceItem;
 import com.kachudelight.kachu.item.food.ProcessedTeaLeafItem;
@@ -15,6 +16,12 @@ public class ItemRegistry {
     public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, KachuDelight.MOD_ID);
     // 咖啡豆
     public static final RegistryObject<Item> COFFEE_BEAN = ITEMS.register("coffee_bean", () -> new ItemNameBlockItem(BlockRegistry.COFFEE_CROP.get(), new Item.Properties().food(FoodList.COFFEE_BEAN)));
+    // 星芒咖啡辅料瓶（按版本排列，使用逻辑后续补充）
+    public static final RegistryObject<Item> STARLIGHT_COFFEE_VER_23_8_19_61 = ITEMS.register("starlight_coffee_ver_23_8_19_61", () -> new Item(new Item.Properties().stacksTo(16)));
+    public static final RegistryObject<Item> STARLIGHT_COFFEE_VER_23_8_19_62 = ITEMS.register("starlight_coffee_ver_23_8_19_62", () -> new Item(new Item.Properties().stacksTo(16)));
+    // 星芒咖啡饮品（按版本排列）
+    public static final RegistryObject<Item> STARLIGHT_COFFEE_DRINK_VER_23_8_19_61 = registerCoffeeDrink("starlight_coffee_drink_ver_23_8_19_61", FoodList.COFFEE_DRINK_VER_61);
+    public static final RegistryObject<Item> STARLIGHT_COFFEE_DRINK_VER_23_8_19_62 = registerCoffeeDrink("starlight_coffee_drink_ver_23_8_19_62", FoodList.COFFEE_DRINK_VER_62);
     // 野生咖啡灌木
     public static final RegistryObject<Item> WILD_COFFEE_BUSH = ITEMS.register("wild_coffee_bush", () -> new BlockItem(BlockRegistry.WILD_COFFEE_BUSH.get(), new Item.Properties()));
     // 野生茶灌木
@@ -23,19 +30,24 @@ public class ItemRegistry {
     public static final RegistryObject<Item> STARLIGHT_COFFEE_MACHINE = ITEMS.register("starlight_coffee_machine", () -> new BlockItem(BlockRegistry.STARLIGHT_COFFEE_MACHINE.get(), new Item.Properties()));
     public static final RegistryObject<Item> TEA_BREWING_MACHINE = ITEMS.register("tea_brewing_machine", () -> new BlockItem(BlockRegistry.TEA_BREWING_MACHINE.get(), new Item.Properties()));
     // 咖啡杯
-    public static final RegistryObject<Item> GLASS_CUP = ITEMS.register("glass_cup", () -> new Item(new Item.Properties().stacksTo(16)));
+    public static final RegistryObject<Item> COFFEE_CUP = ITEMS.register("coffee_cup", () -> new Item(new Item.Properties().stacksTo(16)));
     // 茶叶
     public static final RegistryObject<Item> TEA_LEAF = ITEMS.register("tea_leaf", () -> new TeaLeafItem(BlockRegistry.TEA_CROP.get(), new Item.Properties().food(FoodList.TEA_LEAF)));
     // 绿茶叶
     public static final RegistryObject<Item> GREEN_TEA_LEAF = registerProcessedTeaLeaf("green_tea_leaf");
-    // 绿茶饮品（饮用逻辑与效果后续补充）
-    public static final RegistryObject<Item> GREEN_TEA = ITEMS.register("green_tea", () -> new Item(new Item.Properties().stacksTo(16)));
     // 白茶叶
     public static final RegistryObject<Item> WHITE_TEA_LEAF = registerProcessedTeaLeaf("white_tea_leaf");
     // 乌龙茶叶
     public static final RegistryObject<Item> OOLONG_TEA_LEAF = registerProcessedTeaLeaf("oolong_tea_leaf");
     // 红茶叶
     public static final RegistryObject<Item> BLACK_TEA_LEAF = registerProcessedTeaLeaf("black_tea_leaf");
+
+    // 茶饮
+    public static final RegistryObject<Item> GREEN_TEA = registerTeaDrink("green_tea");
+    public static final RegistryObject<Item> WHITE_TEA = registerTeaDrink("white_tea");
+    public static final RegistryObject<Item> OOLONG_TEA = registerTeaDrink("oolong_tea");
+    public static final RegistryObject<Item> BLACK_TEA = registerTeaDrink("black_tea");
+
     // 盘子
     public static final RegistryObject<Item> PLATE = ITEMS.register("plate", () -> new Item(new Item.Properties().stacksTo(64)));
 
@@ -48,6 +60,16 @@ public class ItemRegistry {
 
     private static RegistryObject<Item> registerProcessedTeaLeaf(String name) {
         return ITEMS.register(name, () -> new ProcessedTeaLeafItem(new Item.Properties().food(FoodList.PROCESSED_TEA_LEAF)));
+    }
+
+    private static RegistryObject<Item> registerCoffeeDrink(String name, net.minecraft.world.food.FoodProperties food) {
+        return ITEMS.register(name, () -> new DrinkItem(
+                new Item.Properties().stacksTo(16).food(food), () -> COFFEE_CUP.get()));
+    }
+
+    private static RegistryObject<Item> registerTeaDrink(String name) {
+        return ITEMS.register(name, () -> new DrinkItem(
+                new Item.Properties().stacksTo(16).food(FoodList.TEA_DRINK), () -> Items.GLASS_BOTTLE));
     }
 
     static {

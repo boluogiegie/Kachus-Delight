@@ -1,0 +1,18 @@
+{
+  "type": "kachu:coffee_brewing",
+  "ingredients": [
+    {
+      "item": "kachu:coffee_bean"
+    },
+    {
+      "item": "kachu:starlight_coffee_ver_23_8_19_61"
+    },
+    {
+      "item": "kachu:coffee_cup"
+    }
+  ],
+  "output": {
+    "item": "kachu:starlight_coffee_drink_ver_23_8_19_61",
+    "count": 1
+  }
+}

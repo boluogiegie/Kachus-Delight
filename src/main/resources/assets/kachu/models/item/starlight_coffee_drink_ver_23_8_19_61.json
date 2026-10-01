@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "kachu:item/starlight_coffee_drink_ver_23_8_19_61"
+  }
+}

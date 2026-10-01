@@ -1,7 +1,6 @@
 package com.kachudelight.kachu.machine.tea;
 
 import com.kachudelight.kachu.registry.BlockEntityRegistry;
-import com.kachudelight.kachu.registry.ItemRegistry;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
@@ -50,7 +49,7 @@ public class TeaBrewingMachineBlockEntity extends BlockEntity implements MenuPro
         public boolean isItemValid(int slot, @NotNull ItemStack stack) {
             return switch (slot) {
                 case INPUT_SLOT_1, INPUT_SLOT_2, INPUT_SLOT_3, INPUT_SLOT_4 -> true;
-                case CUP_SLOT -> stack.is(ItemRegistry.GLASS_CUP.get());
+                case CUP_SLOT -> stack.is(Items.GLASS_BOTTLE);
                 case WATER_IN_SLOT -> stack.is(Items.WATER_BUCKET) || stack.is(Items.BUCKET);
                 case OUTPUT_SLOT, WATER_OUT_SLOT -> false;
                 default -> false;
@@ -131,7 +130,7 @@ public class TeaBrewingMachineBlockEntity extends BlockEntity implements MenuPro
         return level == null ? Optional.empty() : level.getRecipeManager().getRecipeFor(TeaBrewingRecipeType.INSTANCE, inventoryCopy(), level);
     }
     private boolean canCraft(TeaBrewingRecipe recipe) {
-        if (waterAmount < WATER_PER_BREW || !itemHandler.getStackInSlot(CUP_SLOT).is(ItemRegistry.GLASS_CUP.get())) return false;
+        if (waterAmount < WATER_PER_BREW || !itemHandler.getStackInSlot(CUP_SLOT).is(Items.GLASS_BOTTLE)) return false;
         ItemStack result = recipe.getResultItem(level.registryAccess());
         ItemStack output = itemHandler.getStackInSlot(OUTPUT_SLOT);
         return output.isEmpty() || (ItemStack.isSameItemSameTags(output, result) && output.getCount() + result.getCount() <= output.getMaxStackSize());

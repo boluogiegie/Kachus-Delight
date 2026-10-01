@@ -5,14 +5,14 @@
       "item": "kachu:coffee_bean"
     },
     {
-      "item": "minecraft:sugar"
+      "item": "kachu:starlight_coffee_ver_23_8_19_62"
     },
     {
-      "item": "kachu:glass_cup"
+      "item": "kachu:coffee_cup"
     }
   ],
   "output": {
-    "item": "minecraft:beetroot",
+    "item": "kachu:starlight_coffee_drink_ver_23_8_19_62",
     "count": 1
   }
 }

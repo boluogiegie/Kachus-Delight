@@ -93,12 +93,16 @@ public class StarlightCoffeeMachineMenu extends AbstractContainerMenu {
                     return ItemStack.EMPTY;
                 }
             }
-            else if (sourceStack.is(com.kachudelight.kachu.registry.ItemRegistry.GLASS_CUP.get())) {
+            else if (sourceStack.is(com.kachudelight.kachu.registry.ItemRegistry.COFFEE_CUP.get())) {
                 if (!moveItemStackTo(sourceStack, 38, 39, false)) {
                     return ItemStack.EMPTY;
                 }
             }
-            //未来可以在这里添加判断，如果是"辅料"就 move 到 37，如果是"杯子"就 move 到 38
+            else if (StarlightCoffeeMachineBlockEntity.isCoffeeAdditive(sourceStack)) {
+                if (!moveItemStackTo(sourceStack, 37, 38, false)) {
+                    return ItemStack.EMPTY;
+                }
+            }
             else {
                 if (index < 27) {
                     if (!moveItemStackTo(sourceStack, 27, 36, false)) {

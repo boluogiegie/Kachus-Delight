@@ -1,0 +1,38 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "FLC",
+    "DBW",
+    " TS"
+  ],
+  "key": {
+    "F": {
+      "item": "minecraft:fern"
+    },
+    "L": {
+      "item": "minecraft:lily_of_the_valley"
+    },
+    "C": {
+      "item": "minecraft:cocoa_beans"
+    },
+    "D": {
+      "item": "minecraft:dried_kelp"
+    },
+    "B": {
+      "item": "minecraft:glass_bottle"
+    },
+    "W": {
+      "item": "minecraft:wheat"
+    },
+    "T": {
+      "item": "minecraft:cod"
+    },
+    "S": {
+      "item": "minecraft:sugar"
+    }
+  },
+  "result": {
+    "item": "kachu:starlight_coffee_ver_23_8_19_61",
+    "count": 1
+  }
+}

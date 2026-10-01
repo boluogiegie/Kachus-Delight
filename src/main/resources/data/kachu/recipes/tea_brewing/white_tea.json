@@ -2,11 +2,11 @@
   "type": "kachu:tea_brewing",
   "ingredients": [
     {
-      "item": "kachu:green_tea_leaf"
+      "item": "kachu:white_tea_leaf"
     }
   ],
   "output": {
-    "item": "kachu:green_tea",
+    "item": "kachu:white_tea",
     "count": 1
   }
 }
