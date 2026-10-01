@@ -1,0 +1,32 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "DAD",
+    "SRS",
+    "ICI"
+  ],
+  "key": {
+    "D": {
+      "item": "minecraft:purple_dye"
+    },
+    "A": {
+      "item": "minecraft:amethyst_block"
+    },
+    "S": {
+      "item": "minecraft:amethyst_shard"
+    },
+    "R": {
+      "item": "minecraft:redstone"
+    },
+    "I": {
+      "item": "minecraft:iron_ingot"
+    },
+    "C": {
+      "item": "minecraft:cauldron"
+    }
+  },
+  "result": {
+    "item": "kachu:starlight_coffee_machine",
+    "count": 1
+  }
+}
